@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "q-flow"
+version = "0.1.0"
+description = "Q-Flow adaptive logistics intelligence — classical/quantum optimization PoC"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "qiskit>=2.0",
+  "qiskit-aer",
+  "qiskit-ibm-runtime",
+  "numpy",
+  "scipy",
+  "pandas",
+  "matplotlib",
+  "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"

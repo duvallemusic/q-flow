@@ -1,5 +1,8 @@
-# CDC
+# CDC — Contextual Decision Compiler
 
-Compilação de dependências e QUBO/Ising.
+Implementação inicial da PoC v0.1:
 
-Módulo planejado; não implementado.
+- `qubo.py` — modelo QUBO e exemplo oficial de dois caminhões
+- `ising.py` — conversão `x=(I-Z)/2` para `SparsePauliOp`
+- `constraints.py` — penalidade one-hot e validador
+- `compiler.py` — planos candidatos → QUBO/Ising + metadados

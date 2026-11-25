@@ -7,6 +7,16 @@ __pycache__/
 .DS_Store
 datasets/*
 !datasets/README.md
+!datasets/synthetic/
+datasets/synthetic/*.json
+!datasets/synthetic/.gitkeep
 private/
 *.pem
 *.key
+.pytest_cache/
+credentials/
+*.qpy
+results/**/*.qpy
+.coverage
+htmlcov/
+.mplconfig/
