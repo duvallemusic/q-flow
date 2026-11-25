@@ -1,5 +1,12 @@
-# Experimento planejado
+# Experimento 02 — QAOA simulador ideal
 
-Comparar QAOA em simulador com a enumeração; registrar seed, shots, gap e versões.
+Implementado em `src/optimization/qaoa.py` e `scripts/run_simulator.py`.
 
-Status: não executado.
+```bash
+python scripts/run_simulator.py
+```
+
+Resultados: `results/quantum_poc_v0.1/simulator_results.json`, `optimized_parameters.json`.
+
+Credenciais IBM **não** ficam nesta pasta. Use `credentials/ibm_apikey.json` (gitignored).
+Ver execução QPU em `docs/experiments/ibm_qpu_run_poc_v0.1.md`.

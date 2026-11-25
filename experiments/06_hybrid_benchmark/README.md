@@ -1,5 +1,7 @@
-# Experimento planejado
+# Experimento 06 — Benchmark híbrido
 
-Comparar clássicos, QAOA, ML, cache e warm-start com instâncias equivalentes.
+```bash
+python scripts/run_benchmark.py
+```
 
-Status: não executado.
+Cenário D: QAOA skipped (hang documentado). Ver `docs/experiments/known_issues_poc_v0.1.md`.

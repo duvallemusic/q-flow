@@ -1,0 +1,181 @@
+{
+  "created_at_utc": "2026-11-25T18:00:58.395975+00:00",
+  "environment": {
+    "captured_at_utc": "2026-11-25T18:00:58.975928+00:00",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "git_commit": "ba3c1f0946dd53cbe3c5d3f837cb4a1547fa0595",
+    "versions": {
+      "python": "3.13.12 (v3.13.12:1cbe4818347, Feb  3 2026, 13:36:53) [Clang 16.0.0 (clang-1600.0.26.6)]",
+      "qiskit": "2.6.2",
+      "qiskit_aer": "0.18.4",
+      "qiskit_ibm_runtime": "0.52.1",
+      "numpy": "2.5.5",
+      "scipy": "1.18.1",
+      "pandas": "3.1.1",
+      "matplotlib": "3.11.2"
+    }
+  },
+  "two_truck_whitepaper": {
+    "enumeration": {
+      "optimal_cost": 610.0,
+      "optima": [
+        {
+          "bits": [
+            0,
+            1
+          ],
+          "bitstring": "01",
+          "cost": 610.0,
+          "assignment": {
+            "x1": 0,
+            "x2": 1
+          }
+        },
+        {
+          "bits": [
+            1,
+            0
+          ],
+          "bitstring": "10",
+          "cost": 610.0,
+          "assignment": {
+            "x1": 1,
+            "x2": 0
+          }
+        }
+      ],
+      "all_solutions": [
+        {
+          "bits": [
+            0,
+            0
+          ],
+          "bitstring": "00",
+          "cost": 660.0,
+          "assignment": {
+            "x1": 0,
+            "x2": 0
+          }
+        },
+        {
+          "bits": [
+            0,
+            1
+          ],
+          "bitstring": "01",
+          "cost": 610.0,
+          "assignment": {
+            "x1": 0,
+            "x2": 1
+          }
+        },
+        {
+          "bits": [
+            1,
+            0
+          ],
+          "bitstring": "10",
+          "cost": 610.0,
+          "assignment": {
+            "x1": 1,
+            "x2": 0
+          }
+        },
+        {
+          "bits": [
+            1,
+            1
+          ],
+          "bitstring": "11",
+          "cost": 630.0,
+          "assignment": {
+            "x1": 1,
+            "x2": 1
+          }
+        }
+      ],
+      "runtime_seconds": 9.454181417822838e-05
+    },
+    "uniform_baseline": {
+      "method": "uniform_random",
+      "shots": 4096,
+      "seed": 42,
+      "counts": {
+        "01": 1023,
+        "10": 1004,
+        "00": 1070,
+        "11": 999
+      },
+      "optimal_probability": 0.494873046875,
+      "theoretical_optimal_probability": 0.5,
+      "runtime_seconds": 0.009008458815515041
+    },
+    "modeling_gain_brl": 50.0,
+    "modeling_gain_pct": 7.575757575757576,
+    "note": "Gain is from joint modeling, NOT quantum advantage."
+  },
+  "scenario_A_one_hot": {
+    "greedy": {
+      "method": "individual_min_cost_ignoring_conflicts",
+      "bits": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "bitstring": "1010",
+      "operational_cost": 660.0,
+      "qubo_value": 660.0,
+      "feasible": true,
+      "violations": [],
+      "chosen": [
+        {
+          "index": 0,
+          "name": "truck_1__A",
+          "vehicle_id": "truck_1",
+          "route_id": "A",
+          "operational_cost_brl": 300.0,
+          "shared_resource_id": "resource_A"
+        },
+        {
+          "index": 2,
+          "name": "truck_2__A",
+          "vehicle_id": "truck_2",
+          "route_id": "A",
+          "operational_cost_brl": 290.0,
+          "shared_resource_id": "resource_A"
+        }
+      ],
+      "runtime_seconds": 1.4709308743476868e-05
+    },
+    "feasible_optimum": {
+      "optimal_operational_cost": 610.0,
+      "optima": [
+        {
+          "bits": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "bitstring": "1001",
+          "operational_cost": 610.0,
+          "qubo_value": 610.0
+        },
+        {
+          "bits": [
+            0,
+            1,
+            1,
+            0
+          ],
+          "bitstring": "0110",
+          "operational_cost": 610.0,
+          "qubo_value": 610.0
+        }
+      ],
+      "n_feasible": 4
+    }
+  }
+}

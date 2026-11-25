@@ -1,0 +1,55 @@
+{
+  "created_at_utc": "2026-11-25T18:16:19.014565+00:00",
+  "mode": "execute_and_fetch",
+  "job_id": "dc3ibmdhdvas73bnvcfg",
+  "backend": "ibm_kingston",
+  "environment": {
+    "captured_at_utc": "2026-11-25T18:16:19.225054+00:00",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "git_commit": "c747355269c051fcd41534d6715b5ae645c1c460",
+    "versions": {
+      "python": "3.13.12 (v3.13.12:1cbe4818347, Feb  3 2026, 13:36:53) [Clang 16.0.0 (clang-1600.0.26.6)]",
+      "qiskit": "2.6.2",
+      "qiskit_aer": "0.18.4",
+      "qiskit_ibm_runtime": "0.52.1",
+      "numpy": "2.5.5",
+      "scipy": "1.18.1",
+      "pandas": "3.1.1",
+      "matplotlib": "3.11.2"
+    }
+  },
+  "result": {
+    "job_id": "dc3ibmdhdvas73bnvcfg",
+    "remote_status": "DONE",
+    "fetched_at_utc": "2026-11-25T18:16:18.306656+00:00",
+    "submitted": false,
+    "new_job_created": false,
+    "status": "completed",
+    "counts": {
+      "01": 1948,
+      "10": 2003,
+      "00": 97,
+      "11": 48
+    },
+    "shots": 4096,
+    "most_frequent": "10",
+    "optimal_probability": 0.964599609375,
+    "optimal_probability_wilson_95": [
+      0.9584910166724925,
+      0.9698375314353174
+    ],
+    "feasibility_rate": null,
+    "best_observed_bitstring": "10",
+    "best_observed_cost": 610.0,
+    "expected_cost": 611.41845703125,
+    "distribution": {
+      "01": 0.4755859375,
+      "10": 0.489013671875,
+      "00": 0.023681640625,
+      "11": 0.01171875
+    }
+  },
+  "note": "Fetched without submitting a new job. Credentials not stored in this artifact.",
+  "tvd_vs_ideal": 0.035400390625
+}

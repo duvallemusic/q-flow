@@ -1,0 +1,20 @@
+{
+  "poc_version": "0.1",
+  "created_at_utc": "2026-11-25T18:17:26.919461+00:00",
+  "git_commit": "c747355269c051fcd41534d6715b5ae645c1c460",
+  "artifacts": {
+    "classical_results.json": "completed",
+    "simulator_results.json": "completed",
+    "noisy_simulator_results.json": "completed",
+    "ibm_quantum_results.json": "completed",
+    "benchmark.csv": "completed",
+    "optimized_parameters.json": "completed",
+    "hardware_distribution.png": "completed"
+  },
+  "ibm_stage": {
+    "local_ready": true,
+    "physical_execution": "completed",
+    "mode": "execute_and_fetch"
+  },
+  "data_provenance": "synthetic / illustrative White Paper example"
+}

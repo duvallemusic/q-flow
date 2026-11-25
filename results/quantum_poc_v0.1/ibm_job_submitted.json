@@ -1,0 +1,16 @@
+{
+  "status": "submitted",
+  "job_id": "dc3ibmdhdvas73bnvcfg",
+  "plan": {
+    "backend_name": "ibm_kingston",
+    "shots": 4096,
+    "p": 2,
+    "logical_depth": 2,
+    "transpiled_depth": 30,
+    "transpiled_size": 43,
+    "layout": "TranspileLayout(initial_layout=Layout({\n0: <Qubit register=(2, \"q\"), index=0>,\n1: <Qubit register=(2, \"q\"), index=1>,\n2: <Qubit register=(154, \"ancilla\"), index=0>,\n3: <Qubit register=(154, \"ancilla\")...[truncated]",
+    "created_at_utc": "2026-11-25T18:15:52.592375+00:00"
+  },
+  "submitted_at_utc": "2026-11-25T18:15:53.784522+00:00",
+  "execution_type": "ibm_qpu"
+}

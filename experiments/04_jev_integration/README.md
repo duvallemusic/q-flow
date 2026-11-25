@@ -1,5 +1,6 @@
-# Experimento planejado
+# Experimento 04 — Integração Jev
 
-Validar API Jev com dados sintéticos, sem informações pessoais; registrar modelo e respostas.
+**Fora do escopo da PoC v0.1.**
 
-Status: não executado.
+Interface preparada: `src/scoring/providers.py` (`JevScoringProvider` levanta `NotImplementedError`).
+Nesta versão apenas `HeuristicScoringProvider` é funcional.

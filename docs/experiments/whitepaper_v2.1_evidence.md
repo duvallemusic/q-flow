@@ -1,0 +1,59 @@
+# Evidências verificáveis para White Paper v2.1
+
+Este arquivo contém apenas afirmações suportadas pelos artefatos da PoC v0.1.
+
+## Verificação matemática (toy 2 caminhões)
+
+- Função: `F=660-50x1-50x2+70x1x2`
+- Valores: `00=660`, `01=610`, `10=610`, `11=630`
+- Ótimos degenerados: `01` e `10`
+- Ganho de modelagem vs baseline `00`: R$ 50 (~7,58%)
+- Interpretação obrigatória: ganho de **modelagem conjunta**, não vantagem quântica
+
+## Ising
+
+- `H = 627.5 I + 7.5 Z1 + 7.5 Z2 + 17.5 Z1 Z2`
+- Equivalência QUBO/Ising verificada por enumeração e testes automatizados
+
+## QAOA (simulador ideal)
+
+- Biblioteca: Qiskit 2.6.2
+- Melhor configuração local: p=2, seed=42
+- P(ótimo) observada: 1.0
+- Baseline uniforme teórico no toy: 50%
+- Parâmetros em `results/quantum_poc_v0.1/optimized_parameters.json`
+
+## Ruído
+
+- TVD sintético vs ideal: 0.023193359375
+- Simulação ruidosa ≠ QPU
+
+## IBM Quantum
+
+- Estado registrado: `execute_and_fetch:completed`
+- Dry-run implementado; submissão real exige `--execute` + confirmação `EXECUTE`
+- Credenciais locais nesta execução: ver `ibm_quantum_results.json` (`credentials.available`)
+- Job físico (se presente): ver `docs/experiments/ibm_qpu_run_poc_v0.1.md`
+
+## Benchmark de escala (sintético)
+
+- A/B/C: QAOA executado com budget limitado no laptop
+- D (12 vars): somente clássico (`classical_only`) após hang documentado (KI-01)
+- Fonte: `results/quantum_poc_v0.1/benchmark.csv` e `docs/experiments/run_log_poc_v0.1.md`
+
+## Hardware IBM (executado)
+
+- Job ID: `dc3ibmdhdvas73bnvcfg`
+- Backend: `ibm_kingston`
+- Shots: 4096; p=2; toy 2 qubits
+- P(ótimo): ≈0.9646
+- TVD vs simulador ideal: ≈0.0354
+- Fonte: `results/quantum_poc_v0.1/ibm_quantum_results.json`
+- Interpretação: viabilidade física no toy; **sem** alegação de vantagem quântica
+
+## O que NÃO entra no White Paper ainda
+
+- Economia real de combustível
+- Vantagem quântica computacional
+- Integração Jev/ML
+- Resultados de clientes
