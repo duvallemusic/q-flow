@@ -1,10 +1,10 @@
 {
-  "created_at_utc": "2026-11-25T17:42:49.482262+00:00",
+  "created_at_utc": "2026-11-25T17:56:52.317732+00:00",
   "environment": {
-    "captured_at_utc": "2026-11-25T17:42:49.816890+00:00",
+    "captured_at_utc": "2026-11-25T17:56:52.649702+00:00",
     "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
     "machine": "arm64",
-    "git_commit": "2f82fd0746d4863a9a4947b842ecf5ed88d53182",
+    "git_commit": "46aec5c6797b36dd46893cdb8a3ea56a1dcda708",
     "versions": {
       "python": "3.13.12 (v3.13.12:1cbe4818347, Feb  3 2026, 13:36:53) [Clang 16.0.0 (clang-1600.0.26.6)]",
       "qiskit": "2.6.2",
@@ -61,7 +61,7 @@
     },
     "optimal_probability": 0.494873046875,
     "theoretical_optimal_probability": 0.5,
-    "runtime_seconds": 0.008364125154912472
+    "runtime_seconds": 0.00862099975347519
   },
   "runs": [
     {
@@ -204,8 +204,8 @@
       ],
       "n_evaluations": 338,
       "n_iterations": 338,
-      "training_time_seconds": 1.402568249963224,
-      "sampling_time_seconds": 0.006577916909009218,
+      "training_time_seconds": 1.3590517500415444,
+      "sampling_time_seconds": 0.006332083139568567,
       "circuit_depth": 1,
       "n_qubits": 2,
       "two_qubit_gate_count": 2,
@@ -232,13 +232,16 @@
         "optimizer": "COBYLA",
         "n_restarts": 3,
         "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
         "estimator": "StatevectorEstimator",
         "sampler": "StatevectorSampler",
         "primitive_api": "V2",
         "qubo_scale": 1.0,
         "variational_operator_scale": 17.5,
         "energy_units": "original_qubo_currency_units",
-        "identity_removed_from_ansatz": true
+        "identity_removed_from_ansatz": true,
+        "completed": true
       }
     },
     {
@@ -381,8 +384,8 @@
       ],
       "n_evaluations": 355,
       "n_iterations": 355,
-      "training_time_seconds": 1.4928630413487554,
-      "sampling_time_seconds": 0.006770959123969078,
+      "training_time_seconds": 1.4125287500210106,
+      "sampling_time_seconds": 0.006061458960175514,
       "circuit_depth": 1,
       "n_qubits": 2,
       "two_qubit_gate_count": 2,
@@ -409,13 +412,16 @@
         "optimizer": "COBYLA",
         "n_restarts": 3,
         "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
         "estimator": "StatevectorEstimator",
         "sampler": "StatevectorSampler",
         "primitive_api": "V2",
         "qubo_scale": 1.0,
         "variational_operator_scale": 17.5,
         "energy_units": "original_qubo_currency_units",
-        "identity_removed_from_ansatz": true
+        "identity_removed_from_ansatz": true,
+        "completed": true
       }
     },
     {
@@ -558,8 +564,8 @@
       ],
       "n_evaluations": 360,
       "n_iterations": 360,
-      "training_time_seconds": 1.5391044998541474,
-      "sampling_time_seconds": 0.006524332799017429,
+      "training_time_seconds": 1.465499040670693,
+      "sampling_time_seconds": 0.006086208391934633,
       "circuit_depth": 1,
       "n_qubits": 2,
       "two_qubit_gate_count": 2,
@@ -586,13 +592,16 @@
         "optimizer": "COBYLA",
         "n_restarts": 3,
         "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
         "estimator": "StatevectorEstimator",
         "sampler": "StatevectorSampler",
         "primitive_api": "V2",
         "qubo_scale": 1.0,
         "variational_operator_scale": 17.5,
         "energy_units": "original_qubo_currency_units",
-        "identity_removed_from_ansatz": true
+        "identity_removed_from_ansatz": true,
+        "completed": true
       }
     },
     {
@@ -677,8 +686,8 @@
       ],
       "n_evaluations": 296,
       "n_iterations": 296,
-      "training_time_seconds": 2.2905427501536906,
-      "sampling_time_seconds": 0.010103750042617321,
+      "training_time_seconds": 2.2444464582949877,
+      "sampling_time_seconds": 0.009942708071321249,
       "circuit_depth": 1,
       "n_qubits": 2,
       "two_qubit_gate_count": 4,
@@ -703,13 +712,16 @@
         "optimizer": "COBYLA",
         "n_restarts": 3,
         "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
         "estimator": "StatevectorEstimator",
         "sampler": "StatevectorSampler",
         "primitive_api": "V2",
         "qubo_scale": 1.0,
         "variational_operator_scale": 17.5,
         "energy_units": "original_qubo_currency_units",
-        "identity_removed_from_ansatz": true
+        "identity_removed_from_ansatz": true,
+        "completed": true
       }
     },
     {
@@ -858,8 +870,8 @@
       ],
       "n_evaluations": 360,
       "n_iterations": 360,
-      "training_time_seconds": 2.6777895418927073,
-      "sampling_time_seconds": 0.008957041893154383,
+      "training_time_seconds": 2.571410791017115,
+      "sampling_time_seconds": 0.009136209264397621,
       "circuit_depth": 1,
       "n_qubits": 2,
       "two_qubit_gate_count": 4,
@@ -886,13 +898,16 @@
         "optimizer": "COBYLA",
         "n_restarts": 3,
         "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
         "estimator": "StatevectorEstimator",
         "sampler": "StatevectorSampler",
         "primitive_api": "V2",
         "qubo_scale": 1.0,
         "variational_operator_scale": 17.5,
         "energy_units": "original_qubo_currency_units",
-        "identity_removed_from_ansatz": true
+        "identity_removed_from_ansatz": true,
+        "completed": true
       }
     },
     {
@@ -1041,8 +1056,8 @@
       ],
       "n_evaluations": 360,
       "n_iterations": 360,
-      "training_time_seconds": 2.7351120421662927,
-      "sampling_time_seconds": 0.00959287490695715,
+      "training_time_seconds": 2.7032484165392816,
+      "sampling_time_seconds": 0.009400499984622002,
       "circuit_depth": 1,
       "n_qubits": 2,
       "two_qubit_gate_count": 4,
@@ -1069,13 +1084,16 @@
         "optimizer": "COBYLA",
         "n_restarts": 3,
         "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
         "estimator": "StatevectorEstimator",
         "sampler": "StatevectorSampler",
         "primitive_api": "V2",
         "qubo_scale": 1.0,
         "variational_operator_scale": 17.5,
         "energy_units": "original_qubo_currency_units",
-        "identity_removed_from_ansatz": true
+        "identity_removed_from_ansatz": true,
+        "completed": true
       }
     },
     {
@@ -1230,8 +1248,8 @@
       ],
       "n_evaluations": 360,
       "n_iterations": 360,
-      "training_time_seconds": 3.8044464169070125,
-      "sampling_time_seconds": 0.013208457734435797,
+      "training_time_seconds": 3.8040011250413954,
+      "sampling_time_seconds": 0.013062749989330769,
       "circuit_depth": 1,
       "n_qubits": 2,
       "two_qubit_gate_count": 6,
@@ -1256,13 +1274,16 @@
         "optimizer": "COBYLA",
         "n_restarts": 3,
         "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
         "estimator": "StatevectorEstimator",
         "sampler": "StatevectorSampler",
         "primitive_api": "V2",
         "qubo_scale": 1.0,
         "variational_operator_scale": 17.5,
         "energy_units": "original_qubo_currency_units",
-        "identity_removed_from_ansatz": true
+        "identity_removed_from_ansatz": true,
+        "completed": true
       }
     },
     {
@@ -1417,8 +1438,8 @@
       ],
       "n_evaluations": 360,
       "n_iterations": 360,
-      "training_time_seconds": 3.9100860003381968,
-      "sampling_time_seconds": 0.012903459370136261,
+      "training_time_seconds": 3.8962400420568883,
+      "sampling_time_seconds": 0.013188958168029785,
       "circuit_depth": 1,
       "n_qubits": 2,
       "two_qubit_gate_count": 6,
@@ -1444,13 +1465,16 @@
         "optimizer": "COBYLA",
         "n_restarts": 3,
         "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
         "estimator": "StatevectorEstimator",
         "sampler": "StatevectorSampler",
         "primitive_api": "V2",
         "qubo_scale": 1.0,
         "variational_operator_scale": 17.5,
         "energy_units": "original_qubo_currency_units",
-        "identity_removed_from_ansatz": true
+        "identity_removed_from_ansatz": true,
+        "completed": true
       }
     },
     {
@@ -1605,8 +1629,8 @@
       ],
       "n_evaluations": 360,
       "n_iterations": 360,
-      "training_time_seconds": 3.955988916102797,
-      "sampling_time_seconds": 0.01321804104372859,
+      "training_time_seconds": 3.919612292200327,
+      "sampling_time_seconds": 0.013280417304486036,
       "circuit_depth": 1,
       "n_qubits": 2,
       "two_qubit_gate_count": 6,
@@ -1633,13 +1657,16 @@
         "optimizer": "COBYLA",
         "n_restarts": 3,
         "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
         "estimator": "StatevectorEstimator",
         "sampler": "StatevectorSampler",
         "primitive_api": "V2",
         "qubo_scale": 1.0,
         "variational_operator_scale": 17.5,
         "energy_units": "original_qubo_currency_units",
-        "identity_removed_from_ansatz": true
+        "identity_removed_from_ansatz": true,
+        "completed": true
       }
     }
   ],

@@ -1,10 +1,10 @@
 {
-  "created_at_utc": "2026-11-25T17:20:34.643140+00:00",
+  "created_at_utc": "2026-11-25T17:56:27.683084+00:00",
   "environment": {
-    "captured_at_utc": "2026-11-25T17:20:35.188438+00:00",
+    "captured_at_utc": "2026-11-25T17:56:28.221148+00:00",
     "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
     "machine": "arm64",
-    "git_commit": "2f82fd0746d4863a9a4947b842ecf5ed88d53182",
+    "git_commit": "46aec5c6797b36dd46893cdb8a3ea56a1dcda708",
     "versions": {
       "python": "3.13.12 (v3.13.12:1cbe4818347, Feb  3 2026, 13:36:53) [Clang 16.0.0 (clang-1600.0.26.6)]",
       "qiskit": "2.6.2",
@@ -95,7 +95,7 @@
           }
         }
       ],
-      "runtime_seconds": 9.129103273153305e-05
+      "runtime_seconds": 7.991725578904152e-05
     },
     "uniform_baseline": {
       "method": "uniform_random",
@@ -109,7 +109,7 @@
       },
       "optimal_probability": 0.494873046875,
       "theoretical_optimal_probability": 0.5,
-      "runtime_seconds": 0.007991292048245668
+      "runtime_seconds": 0.008305999916046858
     },
     "modeling_gain_brl": 50.0,
     "modeling_gain_pct": 7.575757575757576,
@@ -147,7 +147,7 @@
           "shared_resource_id": "resource_A"
         }
       ],
-      "runtime_seconds": 1.0167248547077179e-05
+      "runtime_seconds": 1.162523403763771e-05
     },
     "feasible_optimum": {
       "optimal_operational_cost": 610.0,

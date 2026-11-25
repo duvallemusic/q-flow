@@ -1,10 +1,10 @@
 {
-  "created_at_utc": "2026-11-25T17:52:09.689979+00:00",
+  "created_at_utc": "2026-11-25T17:57:13.198036+00:00",
   "environment": {
-    "captured_at_utc": "2026-11-25T17:52:09.880897+00:00",
+    "captured_at_utc": "2026-11-25T17:57:13.471179+00:00",
     "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
     "machine": "arm64",
-    "git_commit": "2f82fd0746d4863a9a4947b842ecf5ed88d53182",
+    "git_commit": "46aec5c6797b36dd46893cdb8a3ea56a1dcda708",
     "versions": {
       "python": "3.13.12 (v3.13.12:1cbe4818347, Feb  3 2026, 13:36:53) [Clang 16.0.0 (clang-1600.0.26.6)]",
       "qiskit": "2.6.2",
@@ -40,9 +40,9 @@
         "qaoa_optimal_probability": 0.1962890625,
         "qaoa_feasibility_rate": 0.2490234375,
         "qaoa_optimality_gap_pct": 0.0,
-        "qaoa_runtime_seconds": 0.40558483311906457,
-        "qaoa_training_time_seconds": 0.39087608316913247,
-        "qaoa_sampling_time_seconds": 0.014708749949932098,
+        "qaoa_runtime_seconds": 0.38892508298158646,
+        "qaoa_training_time_seconds": 0.37613725010305643,
+        "qaoa_sampling_time_seconds": 0.012787832878530025,
         "circuit_depth": 1,
         "two_qubit_gate_count": 0,
         "shots": 1024,
@@ -124,7 +124,7 @@
             "shared_resource_id": "resource_A"
           }
         ],
-        "runtime_seconds": 6.167218089103699e-06
+        "runtime_seconds": 6.58305361866951e-06
       },
       "uniform": {
         "method": "uniform_random",
@@ -150,7 +150,7 @@
         },
         "optimal_probability": 0.12109375,
         "theoretical_optimal_probability": 0.125,
-        "runtime_seconds": 0.0023157503455877304
+        "runtime_seconds": 0.0022530830465257168
       },
       "qaoa": {
         "p": 1,
@@ -201,8 +201,8 @@
         ],
         "n_evaluations": 29,
         "n_iterations": 29,
-        "training_time_seconds": 0.39087608316913247,
-        "sampling_time_seconds": 0.014708749949932098,
+        "training_time_seconds": 0.37613725010305643,
+        "sampling_time_seconds": 0.012787832878530025,
         "circuit_depth": 1,
         "n_qubits": 4,
         "two_qubit_gate_count": 0,
@@ -271,9 +271,9 @@
         "qaoa_optimal_probability": 0.02734375,
         "qaoa_feasibility_rate": 0.384765625,
         "qaoa_optimality_gap_pct": 23.52882032778129,
-        "qaoa_runtime_seconds": 1.147675750311464,
-        "qaoa_training_time_seconds": 1.1024891249835491,
-        "qaoa_sampling_time_seconds": 0.04518662532791495,
+        "qaoa_runtime_seconds": 1.159112375229597,
+        "qaoa_training_time_seconds": 1.1145852501504123,
+        "qaoa_sampling_time_seconds": 0.04452712507918477,
         "circuit_depth": 1,
         "two_qubit_gate_count": 0,
         "shots": 512,
@@ -360,7 +360,7 @@
             "shared_resource_id": "alt_B_2"
           }
         ],
-        "runtime_seconds": 6.250105798244476e-06
+        "runtime_seconds": 5.916692316532135e-06
       },
       "uniform": {
         "method": "uniform_random",
@@ -434,7 +434,7 @@
         },
         "optimal_probability": 0.01953125,
         "theoretical_optimal_probability": 0.015625,
-        "runtime_seconds": 0.0012330831959843636
+        "runtime_seconds": 0.0013376669958233833
       },
       "qaoa": {
         "p": 1,
@@ -481,8 +481,8 @@
         ],
         "n_evaluations": 25,
         "n_iterations": 25,
-        "training_time_seconds": 1.1024891249835491,
-        "sampling_time_seconds": 0.04518662532791495,
+        "training_time_seconds": 1.1145852501504123,
+        "sampling_time_seconds": 0.04452712507918477,
         "circuit_depth": 1,
         "n_qubits": 6,
         "two_qubit_gate_count": 0,
@@ -586,9 +586,9 @@
         "qaoa_optimal_probability": 0.0,
         "qaoa_feasibility_rate": 0.06640625,
         "qaoa_optimality_gap_pct": 3.5269101353630496,
-        "qaoa_runtime_seconds": 15.635718792211264,
-        "qaoa_training_time_seconds": 14.682039042003453,
-        "qaoa_sampling_time_seconds": 0.9536797502078116,
+        "qaoa_runtime_seconds": 15.644171291030943,
+        "qaoa_training_time_seconds": 14.69194229086861,
+        "qaoa_sampling_time_seconds": 0.9522290001623333,
         "circuit_depth": 1,
         "two_qubit_gate_count": 0,
         "shots": 256,
@@ -687,7 +687,7 @@
             "shared_resource_id": "alt_C_2"
           }
         ],
-        "runtime_seconds": 6.624963134527206e-06
+        "runtime_seconds": 6.334390491247177e-06
       },
       "uniform": {
         "method": "uniform_random",
@@ -889,7 +889,7 @@
         },
         "optimal_probability": 0.0,
         "theoretical_optimal_probability": 0.001953125,
-        "runtime_seconds": 0.0006882082670927048
+        "runtime_seconds": 0.0006877081468701363
       },
       "qaoa": {
         "p": 1,
@@ -926,8 +926,8 @@
         ],
         "n_evaluations": 15,
         "n_iterations": 15,
-        "training_time_seconds": 14.682039042003453,
-        "sampling_time_seconds": 0.9536797502078116,
+        "training_time_seconds": 14.69194229086861,
+        "sampling_time_seconds": 0.9522290001623333,
         "circuit_depth": 1,
         "n_qubits": 9,
         "two_qubit_gate_count": 0,
@@ -1214,7 +1214,7 @@
             "shared_resource_id": "corridor_A"
           }
         ],
-        "runtime_seconds": 1.570768654346466e-05
+        "runtime_seconds": 8.58306884765625e-06
       },
       "uniform": {
         "method": "uniform_random",
@@ -1473,7 +1473,7 @@
         },
         "optimal_probability": 0.0,
         "theoretical_optimal_probability": 0.000244140625,
-        "runtime_seconds": 0.0007665832526981831
+        "runtime_seconds": 0.0007383339107036591
       },
       "qaoa": null,
       "noisy": null
@@ -1576,8 +1576,8 @@
         ],
         "n_evaluations": 136,
         "n_iterations": 136,
-        "training_time_seconds": 1.0811768751591444,
-        "sampling_time_seconds": 0.01009787479415536,
+        "training_time_seconds": 1.0750965410843492,
+        "sampling_time_seconds": 0.010257333051413298,
         "circuit_depth": 1,
         "n_qubits": 2,
         "two_qubit_gate_count": 4,

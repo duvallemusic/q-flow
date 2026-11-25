@@ -14,6 +14,7 @@ Repositório: https://github.com/duvallemusic/q-flow
 - [PoC quântica v0.1](docs/experiments/quantum_poc_v0.1.md)
 - [Evidências para White Paper v2.1](docs/experiments/whitepaper_v2.1_evidence.md)
 - [Known issues](docs/experiments/known_issues_poc_v0.1.md)
+- [Run log da PoC](docs/experiments/run_log_poc_v0.1.md)
 - [Materiais iniciais do Challenge](docs/challenge/)
 
 ## Ambiente

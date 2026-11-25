@@ -32,6 +32,13 @@ Este arquivo contém apenas afirmações suportadas pelos artefatos da PoC v0.1.
 
 - Estado registrado: `dry_run:dry_run`
 - Dry-run implementado; submissão real exige `--execute` + confirmação `EXECUTE`
+- Credenciais locais nesta execução: ver `ibm_quantum_results.json` (`credentials.available`)
+
+## Benchmark de escala (sintético)
+
+- A/B/C: QAOA executado com budget limitado no laptop
+- D (12 vars): somente clássico (`classical_only`) após hang documentado (KI-01)
+- Fonte: `results/quantum_poc_v0.1/benchmark.csv` e `docs/experiments/run_log_poc_v0.1.md`
 
 ## O que NÃO entra no White Paper ainda
 
@@ -39,3 +46,4 @@ Este arquivo contém apenas afirmações suportadas pelos artefatos da PoC v0.1.
 - Vantagem quântica computacional
 - Integração Jev/ML
 - Resultados de clientes
+- Resultados de QPU física

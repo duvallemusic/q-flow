@@ -179,11 +179,12 @@ Separar quatro camadas de evidência:
 
 Ver `docs/experiments/known_issues_poc_v0.1.md`.
 
-- **KI-01**: QAOA no cenário D (12 qubits) hangou >10 min no MacBook Air M4 16GB; mitigado com `classical_only` + timeout.
-- **KI-02**: Matplotlib abortou no sandbox sem `MPLCONFIGDIR` gravável.
+- **KI-01**: QAOA no cenário D (12 qubits) hangou >10 min no MacBook Air M4 16GB; mitigado com `classical_only` + timeout; **revalidado** (D conclui em segundos).
+- **KI-02**: Matplotlib abortou no sandbox sem `MPLCONFIGDIR` gravável; revalidado com gráficos gerados.
 - **KI-03**: Namespace Origin/Cursor indisponível; repositório hospedado no GitHub privado.
 - **KI-04**: Deprecation warnings do `QAOAAnsatz`/`NLocal` no Qiskit 2.6.
-- IBM dry-run: credenciais locais não configuradas (`credentials.available=false`); nenhum job submetido.
+- **KI-05**: IBM dry-run sem credenciais (`credentials.available=false`); nenhum job submetido.
+- Log completo: `docs/experiments/run_log_poc_v0.1.md`.
 
 ## 14. Recomendações
 
@@ -242,6 +243,13 @@ Este arquivo contém apenas afirmações suportadas pelos artefatos da PoC v0.1.
 
 - Estado registrado: `{ibm_status}`
 - Dry-run implementado; submissão real exige `--execute` + confirmação `EXECUTE`
+- Credenciais locais nesta execução: ver `ibm_quantum_results.json` (`credentials.available`)
+
+## Benchmark de escala (sintético)
+
+- A/B/C: QAOA executado com budget limitado no laptop
+- D (12 vars): somente clássico (`classical_only`) após hang documentado (KI-01)
+- Fonte: `results/quantum_poc_v0.1/benchmark.csv` e `docs/experiments/run_log_poc_v0.1.md`
 
 ## O que NÃO entra no White Paper ainda
 
@@ -249,6 +257,7 @@ Este arquivo contém apenas afirmações suportadas pelos artefatos da PoC v0.1.
 - Vantagem quântica computacional
 - Integração Jev/ML
 - Resultados de clientes
+- Resultados de QPU física
 """
     (DOCS_EXP / "whitepaper_v2.1_evidence.md").write_text(evidence, encoding="utf-8")
     print("Wrote REPORT.md, docs/experiments/* and manifest.json")

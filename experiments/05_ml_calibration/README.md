@@ -1,5 +1,5 @@
-# Experimento planejado
+# Experimento 05 — Calibração ML
 
-Avaliar calibração com holdout temporal; comparar baseline e Brier score.
+**Fora do escopo da PoC v0.1.**
 
-Status: não executado.
+Interface preparada: `MLScoringProvider` em `src/scoring/providers.py` (não implementado).

@@ -82,11 +82,12 @@ Separar quatro camadas de evidência:
 
 Ver `docs/experiments/known_issues_poc_v0.1.md`.
 
-- **KI-01**: QAOA no cenário D (12 qubits) hangou >10 min no MacBook Air M4 16GB; mitigado com `classical_only` + timeout.
-- **KI-02**: Matplotlib abortou no sandbox sem `MPLCONFIGDIR` gravável.
+- **KI-01**: QAOA no cenário D (12 qubits) hangou >10 min no MacBook Air M4 16GB; mitigado com `classical_only` + timeout; **revalidado** (D conclui em segundos).
+- **KI-02**: Matplotlib abortou no sandbox sem `MPLCONFIGDIR` gravável; revalidado com gráficos gerados.
 - **KI-03**: Namespace Origin/Cursor indisponível; repositório hospedado no GitHub privado.
 - **KI-04**: Deprecation warnings do `QAOAAnsatz`/`NLocal` no Qiskit 2.6.
-- IBM dry-run: credenciais locais não configuradas (`credentials.available=false`); nenhum job submetido.
+- **KI-05**: IBM dry-run sem credenciais (`credentials.available=false`); nenhum job submetido.
+- Log completo: `docs/experiments/run_log_poc_v0.1.md`.
 
 ## 14. Recomendações
 
