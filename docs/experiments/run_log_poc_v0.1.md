@@ -6,8 +6,8 @@ Registro da execução local completa após mitigação do hang no cenário D.
 
 | Item | Valor |
 |---|---|
-| Data (UTC) | 2026-11-25T17:57:15Z |
-| Commit | `46aec5c6797b36dd46893cdb8a3ea56a1dcda708` |
+| Data (UTC) | 2026-11-25T18:01:45Z (rerun local completo) |
+| Commit base | `ba3c1f0` (+ artefatos deste rerun) |
 | Branch | `feature/quantum-poc-v0.1` |
 | Host | MacBook Air M4, ARM64, 16 GB |
 | Python | 3.13 (venv local) |

@@ -1,7 +1,7 @@
 {
   "poc_version": "0.1",
-  "created_at_utc": "2026-11-25T17:58:29.460226+00:00",
-  "git_commit": "46aec5c6797b36dd46893cdb8a3ea56a1dcda708",
+  "created_at_utc": "2026-11-25T18:01:46.523402+00:00",
+  "git_commit": "ba3c1f0946dd53cbe3c5d3f837cb4a1547fa0595",
   "artifacts": {
     "classical_results.json": "completed",
     "simulator_results.json": "completed",

@@ -1,8 +1,8 @@
 {
-  "captured_at_utc": "2026-11-25T17:58:29.428105+00:00",
+  "captured_at_utc": "2026-11-25T18:01:46.500354+00:00",
   "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
   "machine": "arm64",
-  "git_commit": "46aec5c6797b36dd46893cdb8a3ea56a1dcda708",
+  "git_commit": "ba3c1f0946dd53cbe3c5d3f837cb4a1547fa0595",
   "versions": {
     "python": "3.13.12 (v3.13.12:1cbe4818347, Feb  3 2026, 13:36:53) [Clang 16.0.0 (clang-1600.0.26.6)]",
     "qiskit": "2.6.2",
