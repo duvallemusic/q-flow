@@ -1,0 +1,30 @@
+{
+  "two_truck": {
+    "linear": {
+      "0": -50.0,
+      "1": -50.0
+    },
+    "quadratic": {
+      "0,1": 70.0
+    },
+    "offset": 660.0,
+    "metadata": {
+      "instance_id": "two_truck_whitepaper",
+      "currency": "BRL",
+      "synthetic": true,
+      "description": "Two trucks, routes A/B, congestion +70 when both choose A",
+      "expected_values": {
+        "00": 660,
+        "01": 610,
+        "10": 610,
+        "11": 630
+      },
+      "optimal_bitstrings": [
+        "01",
+        "10"
+      ],
+      "modeling_gain_vs_naive_00_brl": 50.0,
+      "modeling_gain_pct_vs_660": 7.575757575757576
+    }
+  }
+}

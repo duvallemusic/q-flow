@@ -1,0 +1,16 @@
+{
+  "captured_at_utc": "2026-11-25T17:52:36.970378+00:00",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "git_commit": "2f82fd0746d4863a9a4947b842ecf5ed88d53182",
+  "versions": {
+    "python": "3.13.12 (v3.13.12:1cbe4818347, Feb  3 2026, 13:36:53) [Clang 16.0.0 (clang-1600.0.26.6)]",
+    "qiskit": "2.6.2",
+    "qiskit_aer": "0.18.4",
+    "qiskit_ibm_runtime": "0.52.1",
+    "numpy": "2.5.5",
+    "scipy": "1.18.1",
+    "pandas": "3.1.1",
+    "matplotlib": "3.11.2"
+  }
+}

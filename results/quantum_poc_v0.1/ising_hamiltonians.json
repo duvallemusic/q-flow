@@ -1,0 +1,28 @@
+{
+  "two_truck": {
+    "paulis": [
+      {
+        "label": "II",
+        "coeff_real": 627.5
+      },
+      {
+        "label": "IZ",
+        "coeff_real": 7.5
+      },
+      {
+        "label": "ZI",
+        "coeff_real": 7.5
+      },
+      {
+        "label": "ZZ",
+        "coeff_real": 17.5
+      }
+    ],
+    "expected": {
+      "I": 627.5,
+      "Z1": 7.5,
+      "Z2": 7.5,
+      "Z1Z2": 17.5
+    }
+  }
+}

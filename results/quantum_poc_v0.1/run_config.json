@@ -1,0 +1,8 @@
+{
+  "python_constraint": ">=3.12,<3.14",
+  "max_qaoa_qubits": 12,
+  "default_shots": 4096,
+  "optimizer": "COBYLA",
+  "primitives": "StatevectorEstimator + StatevectorSampler (V2)",
+  "ibm_default": "dry-run"
+}
