@@ -1,0 +1,13 @@
+A rota mais curta nem sempre é a mais barata. Na logística, peso, topografia, preço do combustível, clima e prazo de entrega influenciam uns aos outros. Uma decisão que parece eficiente para um caminhão pode aumentar o custo de toda a frota. É esse problema que queremos resolver.
+
+A Q-Flow é uma plataforma de inteligência logística adaptativa, integrada aos sistemas de transporte existentes. Nossa proposta combina dados históricos e telemetria com o Jev, uma inteligência artificial de decisões estruturadas. Modelos de machine learning calibram essas avaliações, e nosso compilador transforma custos e interações em uma função matemática de otimização.
+
+Representamos as escolhas por variáveis binárias e suas dependências por termos quadráticos, em uma formulação QUBO. Usamos o Qiskit da IBM para convertê-la em um Hamiltoniano de Ising e executar o algoritmo QAOA. Em um cenário ilustrativo de dois caminhões, coordenar as rotas reduz o custo modelado de seiscentos e sessenta para seiscentos e dez reais.
+
+E não ficamos apenas na teoria. Implementamos a prova de conceito e executamos o mesmo circuito em simulador ideal, simulador com ruído e no computador quântico IBM Kingston. Em quatro mil e noventa e seis medições físicas, obtivemos soluções globalmente ótimas em noventa e seis vírgula quarenta e seis por cento dos resultados. Isso demonstra a execução da nossa modelagem em hardware real, sem afirmar vantagem quântica.
+
+A arquitetura foi projetada para aprender com os resultados reais. A telemetria alimenta os modelos, permitindo calibrar previsões e recuperar soluções anteriores. Quando o contexto muda, queremos reprocessar apenas o necessário. O sistema seleciona entre memória, processamento clássico e quântico, conforme a qualidade esperada e o custo computacional.
+
+Nosso mercado inicial são transportadoras com operações recorrentes. O modelo comercial é uma assinatura B2B integrada ao TMS. Com o Data Partnership, propomos descontos em troca de acesso autorizado a históricos relevantes, permitindo pré-treinar modelos antes da implantação. Cada parceria pode ampliar o conhecimento da plataforma, respeitando a privacidade e a confidencialidade comercial.
+
+O próximo passo é validar a economia em pilotos reais. Q-Flow: uma infraestrutura de decisões interdependentes que aprende com o mundo real e evolui com a computação quântica.

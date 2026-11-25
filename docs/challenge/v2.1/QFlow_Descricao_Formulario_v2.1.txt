@@ -1,0 +1,7 @@
+Q-Flow — Inteligência logística adaptativa
+
+A Q-Flow propõe uma plataforma SaaS B2B integrada a TMS e telemetria, capaz de otimizar decisões interdependentes de rotas, veículos, cargas, horários e abastecimento. A arquitetura combina processamento determinístico, IA estruturada (Jev), machine learning, compilação de decisões em QUBO/Ising e seleção adaptativa de solucionadores clássicos e quânticos. Históricos autorizados via Data Partnership permitem pré-treinamento e descontos, preservando modelos privados e governança. Cache, similaridade, reprocessamento seletivo e warm-start serão investigados para reduzir custo computacional.
+
+A PoC v0.1 implementou a formulação QUBO/Ising e o QAOA com Qiskit. No exemplo ilustrativo de dois caminhões e dois qubits lógicos, o ótimo clássico é R$ 610 ante R$ 660 da escolha individual não coordenada (ganho de modelagem de 7,58%). A melhor simulação ideal obteve 4.096/4.096 shots ótimos; no IBM Kingston, 3.951/4.096 (96,46%). O resultado documenta execução física do caso mínimo, sem demonstrar vantagem quântica ou economia real. O MVP seguirá com benchmarks clássicos robustos, integração Jev/ML e piloto controlado.
+
+Uso de IA: ChatGPT apoiou pesquisa, formulação matemática didática, arquitetura, diagramas, redação e revisão; Cursor apoiou implementação, testes, execução e documentação sob supervisão humana. Resultados registrados no GitHub. Equipe de três integrantes confirmada; preencher identificação no formulário.

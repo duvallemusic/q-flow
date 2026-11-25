@@ -18,7 +18,7 @@ Execução em QPU física permanece separada e só é marcada como concluída co
 | H1 | Modelar interdependências reduz custo vs escolhas individuais | Confirmada no escopo experimental |
 | H2 | QAOA ideal concentra probabilidade em ótimos melhor que amostragem uniforme no toy 2q | Parcialmente confirmada |
 | H3 | Ruído deprecia a distribuição em relação ao ideal | Parcialmente confirmada |
-| H4 | Execução física IBM é operacionalmente viável no toy 2q | Não testada / preparada em dry-run |
+| H4 | Execução física IBM é operacionalmente viável no toy 2q | Confirmada no exemplo de 2 qubits (1 job físico) |
 | H5 | Há vantagem computacional quântica vs clássico exato | Não confirmada (instância minúscula; clássico exato trivial) |
 
 ## 3. Metodologia
@@ -54,7 +54,7 @@ Não confundir com hardware real.
 
 ## 9. Resultados de hardware
 
-Estado: execute_and_fetch:completed.
+Estado: execute_and_fetch:completed. IBM Kingston, 4.096 shots, 3.951 ótimos (96,46%). A execução física está concluída; sem demonstração de vantagem quântica.
 Nenhum resultado físico é inventado. Gráfico `hardware_distribution.png` só existe após job concluído.
 
 ## 10. Gráficos
