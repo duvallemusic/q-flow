@@ -3,6 +3,8 @@
 ## v0.1.0-poc — 2026-11-25
 - PoC quântica local: CDC (QUBO/Ising/constraints/compiler), baselines clássicos e QAOA V2.
 - Experimentos ideal/ruidoso, benchmark sintético A–D, dry-run IBM Runtime.
+- Execução física IBM no toy 2q: job `dc3ibmdhdvas73bnvcfg` em `ibm_kingston` (P(ótimo)≈0.965).
+- Credenciais movidas para `credentials/` (gitignored); CRN vazio → open-instance.
 - Artefatos em `results/quantum_poc_v0.1/` e evidências para White Paper v2.1.
 - Known issue: QAOA no cenário D (12 qubits) skipped após hang; timeout wall-clock adicionado.
 - Dependências: Python 3.13, Qiskit 2.6.2, Aer 0.18.4, IBM Runtime 0.52.1.

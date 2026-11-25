@@ -30,9 +30,10 @@ Este arquivo contém apenas afirmações suportadas pelos artefatos da PoC v0.1.
 
 ## IBM Quantum
 
-- Estado registrado: `dry_run:dry_run`
+- Estado registrado: `execute_and_fetch:completed`
 - Dry-run implementado; submissão real exige `--execute` + confirmação `EXECUTE`
 - Credenciais locais nesta execução: ver `ibm_quantum_results.json` (`credentials.available`)
+- Job físico (se presente): ver `docs/experiments/ibm_qpu_run_poc_v0.1.md`
 
 ## Benchmark de escala (sintético)
 
@@ -40,10 +41,19 @@ Este arquivo contém apenas afirmações suportadas pelos artefatos da PoC v0.1.
 - D (12 vars): somente clássico (`classical_only`) após hang documentado (KI-01)
 - Fonte: `results/quantum_poc_v0.1/benchmark.csv` e `docs/experiments/run_log_poc_v0.1.md`
 
+## Hardware IBM (executado)
+
+- Job ID: `dc3ibmdhdvas73bnvcfg`
+- Backend: `ibm_kingston`
+- Shots: 4096; p=2; toy 2 qubits
+- P(ótimo): ≈0.9646
+- TVD vs simulador ideal: ≈0.0354
+- Fonte: `results/quantum_poc_v0.1/ibm_quantum_results.json`
+- Interpretação: viabilidade física no toy; **sem** alegação de vantagem quântica
+
 ## O que NÃO entra no White Paper ainda
 
 - Economia real de combustível
 - Vantagem quântica computacional
 - Integração Jev/ML
 - Resultados de clientes
-- Resultados de QPU física

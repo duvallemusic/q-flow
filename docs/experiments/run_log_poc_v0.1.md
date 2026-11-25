@@ -69,12 +69,16 @@ Diretório: `results/quantum_poc_v0.1/`
 4. **Hardware IBM**: apenas dry-run; etapa física **não concluída**.
 5. **Vantagem quântica computacional**: **não afirmada**.
 
-## Próximo passo autorizado
+## Execução IBM QPU (etapa 2)
 
-Configurar credenciais IBM locais e, com revisão de quota:
+Concluída em 2026-11-25T18:16Z. Detalhes: `ibm_qpu_run_poc_v0.1.md`.
+
+- Job: `dc3ibmdhdvas73bnvcfg` / backend `ibm_kingston` / shots 4096
+- P(ótimo) hardware ≈ 0.9646; TVD vs ideal ≈ 0.0354
+- Credenciais em `credentials/` (não versionadas); CRN vazio → `open-instance`
+
+## Recuperação posterior
 
 ```bash
-python scripts/run_ibm_quantum.py --execute
-# depois:
-python scripts/run_ibm_quantum.py --job-id <JOB_ID>
+python scripts/run_ibm_quantum.py --job-id dc3ibmdhdvas73bnvcfg
 ```

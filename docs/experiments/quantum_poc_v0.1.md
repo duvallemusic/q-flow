@@ -11,7 +11,7 @@ Execução em QPU física permanece separada e só é marcada como concluída co
 
 - Ganho de modelagem conjunta vs escolha ingênua 00: **R$ 50 (~7,58%)** — não é vantagem quântica.
 - Melhor configuração local QAOA: p=2, seed=42, P(ótimo)=1.0.
-- IBM: `dry_run:dry_run`.
+- IBM: `execute_and_fetch:completed`.
 
 ## 2. Hipóteses
 
@@ -56,7 +56,7 @@ Não confundir com hardware real.
 
 ## 9. Resultados de hardware
 
-Estado: dry_run:dry_run.
+Estado: execute_and_fetch:completed.
 Nenhum resultado físico é inventado. Gráfico `hardware_distribution.png` só existe após job concluído.
 
 ## 10. Gráficos
@@ -88,8 +88,9 @@ Ver `docs/experiments/known_issues_poc_v0.1.md`.
 - **KI-02**: Matplotlib abortou no sandbox sem `MPLCONFIGDIR` gravável; revalidado com gráficos gerados.
 - **KI-03**: Namespace Origin/Cursor indisponível; repositório hospedado no GitHub privado.
 - **KI-04**: Deprecation warnings do `QAOAAnsatz`/`NLocal` no Qiskit 2.6.
-- **KI-05**: IBM dry-run sem credenciais (`credentials.available=false`); nenhum job submetido.
-- Log completo: `docs/experiments/run_log_poc_v0.1.md`.
+- **KI-05**: resolvido — job IBM `dc3ibmdhdvas73bnvcfg` em `ibm_kingston` concluído (P(ótimo)≈0.965).
+- **KI-06**: API key realocada de `experiments/` para `credentials/` (gitignored).
+- Log completo: `docs/experiments/run_log_poc_v0.1.md` e `docs/experiments/ibm_qpu_run_poc_v0.1.md`.
 
 ## 14. Recomendações
 

@@ -7,3 +7,6 @@ python scripts/run_simulator.py
 ```
 
 Resultados: `results/quantum_poc_v0.1/simulator_results.json`, `optimized_parameters.json`.
+
+Credenciais IBM **não** ficam nesta pasta. Use `credentials/ibm_apikey.json` (gitignored).
+Ver execução QPU em `docs/experiments/ibm_qpu_run_poc_v0.1.md`.

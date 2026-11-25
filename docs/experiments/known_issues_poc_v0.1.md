@@ -46,8 +46,17 @@ Registro explícito de falhas e mitigações. Instâncias interrompidas **não**
 |---|---|
 | Sintoma | `credentials.available=false` no dry-run |
 | Impacto | Etapa física não iniciada; plano gerado sem submissão |
-| Política | Não inventar resultados de QPU; `--execute` exige confirmação `EXECUTE` |
-| Status | Esperado até o usuário autenticar o Runtime |
+| Resolução | API key realocada para `credentials/ibm_apikey.json` (gitignored) e salva via `QiskitRuntimeService.save_account` |
+| Nota | `crn.json` veio vazio; usou-se `open-instance` automática |
+| Status | **Resolvido** — job `dc3ibmdhdvas73bnvcfg` em `ibm_kingston` concluído (P(ótimo)≈0.965) |
+
+## KI-06 — Segredo temporariamente fora do cofre
+
+| Campo | Valor |
+|---|---|
+| Sintoma | `apikey.json` / `crn.json` estavam em `experiments/02_qaoa_simulator/` (pasta versionável) |
+| Mitigação | Movidos para `credentials/`; ignores reforçados; arquivos removidos da pasta de experimentos |
+| Status | Mitigado |
 
 ## Política
 

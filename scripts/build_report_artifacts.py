@@ -183,8 +183,9 @@ Ver `docs/experiments/known_issues_poc_v0.1.md`.
 - **KI-02**: Matplotlib abortou no sandbox sem `MPLCONFIGDIR` gravável; revalidado com gráficos gerados.
 - **KI-03**: Namespace Origin/Cursor indisponível; repositório hospedado no GitHub privado.
 - **KI-04**: Deprecation warnings do `QAOAAnsatz`/`NLocal` no Qiskit 2.6.
-- **KI-05**: IBM dry-run sem credenciais (`credentials.available=false`); nenhum job submetido.
-- Log completo: `docs/experiments/run_log_poc_v0.1.md`.
+- **KI-05**: resolvido — job IBM `dc3ibmdhdvas73bnvcfg` em `ibm_kingston` concluído (P(ótimo)≈0.965).
+- **KI-06**: API key realocada de `experiments/` para `credentials/` (gitignored).
+- Log completo: `docs/experiments/run_log_poc_v0.1.md` e `docs/experiments/ibm_qpu_run_poc_v0.1.md`.
 
 ## 14. Recomendações
 
@@ -244,6 +245,7 @@ Este arquivo contém apenas afirmações suportadas pelos artefatos da PoC v0.1.
 - Estado registrado: `{ibm_status}`
 - Dry-run implementado; submissão real exige `--execute` + confirmação `EXECUTE`
 - Credenciais locais nesta execução: ver `ibm_quantum_results.json` (`credentials.available`)
+- Job físico (se presente): ver `docs/experiments/ibm_qpu_run_poc_v0.1.md`
 
 ## Benchmark de escala (sintético)
 
@@ -257,8 +259,25 @@ Este arquivo contém apenas afirmações suportadas pelos artefatos da PoC v0.1.
 - Vantagem quântica computacional
 - Integração Jev/ML
 - Resultados de clientes
-- Resultados de QPU física
 """
+    # Preserve hardware evidence appendix if already present in previous evidence file.
+    prev = DOCS_EXP / "whitepaper_v2.1_evidence.md"
+    if prev.exists():
+        old = prev.read_text(encoding="utf-8")
+        if "dc3ibmdhdvas73bnvcfg" in old and "dc3ibmdhdvas73bnvcfg" not in evidence:
+            marker = "## O que NÃO entra no White Paper ainda"
+            hw = """## Hardware IBM (executado)
+
+- Job ID: `dc3ibmdhdvas73bnvcfg`
+- Backend: `ibm_kingston`
+- Shots: 4096; p=2; toy 2 qubits
+- P(ótimo): ≈0.9646
+- TVD vs simulador ideal: ≈0.0354
+- Fonte: `results/quantum_poc_v0.1/ibm_quantum_results.json`
+- Interpretação: viabilidade física no toy; **sem** alegação de vantagem quântica
+
+"""
+            evidence = evidence.replace(marker, hw + marker)
     (DOCS_EXP / "whitepaper_v2.1_evidence.md").write_text(evidence, encoding="utf-8")
     print("Wrote REPORT.md, docs/experiments/* and manifest.json")
 

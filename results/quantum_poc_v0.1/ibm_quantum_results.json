@@ -1,29 +1,13 @@
 {
-  "created_at_utc": "2026-11-25T18:01:45.437724+00:00",
-  "mode": "dry_run",
-  "parameters_source": {
-    "p": 2,
-    "seed": 42,
-    "parameter_names": [
-      "\u03b2[0]",
-      "\u03b2[1]",
-      "\u03b3[0]",
-      "\u03b3[1]"
-    ],
-    "final_parameters": [
-      4.896890258306809,
-      2.6416172652786756,
-      6.416908598255898,
-      5.386729253121243
-    ],
-    "optimal_probability": 1.0,
-    "expected_energy": 610.0060362339036
-  },
+  "created_at_utc": "2026-11-25T18:16:19.014565+00:00",
+  "mode": "execute_and_fetch",
+  "job_id": "dc3ibmdhdvas73bnvcfg",
+  "backend": "ibm_kingston",
   "environment": {
-    "captured_at_utc": "2026-11-25T18:01:45.637823+00:00",
+    "captured_at_utc": "2026-11-25T18:16:19.225054+00:00",
     "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
     "machine": "arm64",
-    "git_commit": "ba3c1f0946dd53cbe3c5d3f837cb4a1547fa0595",
+    "git_commit": "c747355269c051fcd41534d6715b5ae645c1c460",
     "versions": {
       "python": "3.13.12 (v3.13.12:1cbe4818347, Feb  3 2026, 13:36:53) [Clang 16.0.0 (clang-1600.0.26.6)]",
       "qiskit": "2.6.2",
@@ -36,40 +20,36 @@
     }
   },
   "result": {
-    "status": "dry_run",
-    "credentials": {
-      "available": false,
-      "n_backends": null
-    },
-    "backends_preview": [],
-    "suggested_backend": null,
-    "plan": {
-      "dry_run": true,
-      "created_at_utc": "2026-11-25T18:01:45.437693+00:00",
-      "backend_name": "UNSELECTED",
-      "shots": 4096,
-      "p": 2,
-      "n_logical_qubits": 2,
-      "parameter_names": [
-        "\u03b2[0]",
-        "\u03b2[1]",
-        "\u03b3[0]",
-        "\u03b3[1]"
-      ],
-      "parameters": [
-        4.896890258306809,
-        2.6416172652786756,
-        6.416908598255898,
-        5.386729253121243
-      ],
-      "logical_depth": 2,
-      "logical_size": 4,
-      "instance": "two_truck_whitepaper",
-      "warning": "No job submitted. Pass --execute only after reviewing quota/cost."
-    },
+    "job_id": "dc3ibmdhdvas73bnvcfg",
+    "remote_status": "DONE",
+    "fetched_at_utc": "2026-11-25T18:16:18.306656+00:00",
     "submitted": false,
-    "job_id": null
+    "new_job_created": false,
+    "status": "completed",
+    "counts": {
+      "01": 1948,
+      "10": 2003,
+      "00": 97,
+      "11": 48
+    },
+    "shots": 4096,
+    "most_frequent": "10",
+    "optimal_probability": 0.964599609375,
+    "optimal_probability_wilson_95": [
+      0.9584910166724925,
+      0.9698375314353174
+    ],
+    "feasibility_rate": null,
+    "best_observed_bitstring": "10",
+    "best_observed_cost": 610.0,
+    "expected_cost": 611.41845703125,
+    "distribution": {
+      "01": 0.4755859375,
+      "10": 0.489013671875,
+      "00": 0.023681640625,
+      "11": 0.01171875
+    }
   },
-  "max_jobs": 1,
-  "note": "Physical QPU results are recorded only when a real job completes."
+  "note": "Fetched without submitting a new job. Credentials not stored in this artifact.",
+  "tvd_vs_ideal": 0.035400390625
 }

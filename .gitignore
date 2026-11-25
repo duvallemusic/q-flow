@@ -15,6 +15,10 @@ private/
 *.key
 .pytest_cache/
 credentials/
+**/apikey.json
+**/crn.json
+**/*apikey*.json
+**/*token*.json
 *.qpy
 results/**/*.qpy
 .coverage
