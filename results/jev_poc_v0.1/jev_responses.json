@@ -1,0 +1,259 @@
+{
+  "run_id": "20261125T214623Z",
+  "created_at_utc": "2026-11-25T21:46:23.015387+00:00",
+  "provider": "typesafe",
+  "endpoint": "https://api.typesafe.ai/v1/systemone",
+  "model": "jev-latest",
+  "synthetic_scenario": true,
+  "complete": true,
+  "routes": {
+    "A": {
+      "request": {
+        "model": "jev-latest",
+        "state": {
+          "rota": "A - via serra",
+          "distancia_km": 96,
+          "trecho_critico": "18 km de serra com aclive m\u00e9dio de 6%",
+          "clima_previsto": "chuva forte a partir das 14h, com alerta da Defesa Civil",
+          "obras": "pare-e-siga no km 42, espera m\u00e9dia de 25 minutos",
+          "historico": "lentid\u00e3o recorrente nesse trecho em dias de chuva",
+          "carga_t": 24,
+          "saida_prevista": "12h30",
+          "janela_entrega": "at\u00e9 16h no CD de destino"
+        },
+        "questions": {
+          "risco_atraso": {
+            "type": "noul",
+            "instructions": "Considerando o contexto da rota, o caminh\u00e3o corre risco relevante de perder a janela de entrega?",
+            "criteria": {
+              "true": "H\u00e1 fatores concretos que tornam prov\u00e1vel perder a janela (clima, obras, aclive com carga pesada, lentid\u00e3o recorrente).",
+              "false": "N\u00e3o h\u00e1 fatores concretos de atraso; a viagem tende a cumprir a janela."
+            }
+          },
+          "condicao_operacional": {
+            "type": "choice",
+            "instructions": "Qual \u00e9 a condi\u00e7\u00e3o operacional desta rota para a viagem descrita?",
+            "criteria": {
+              "normal": "Sem restri\u00e7\u00f5es relevantes; opera\u00e7\u00e3o dentro do padr\u00e3o.",
+              "atencao": "H\u00e1 fatores que pedem cuidado ou podem gerar algum atraso.",
+              "critica": "H\u00e1 fatores graves que colocam a entrega ou a seguran\u00e7a em risco.",
+              "indefinida": "O contexto n\u00e3o traz informa\u00e7\u00e3o suficiente para avaliar."
+            }
+          },
+          "dificuldade_acesso": {
+            "type": "score",
+            "instructions": "Qual \u00e9 a dificuldade de acesso e de tr\u00e1fego desta rota para um caminh\u00e3o carregado?",
+            "criteria": [
+              "Baixa: via plana, bem conservada e com fluxo livre.",
+              "M\u00e9dia: alguns trechos lentos ou aclives moderados.",
+              "Alta: aclives fortes, obras ou pista em m\u00e1s condi\u00e7\u00f5es.",
+              "Muito alta: trecho perigoso ou quase intransit\u00e1vel para caminh\u00e3o pesado."
+            ]
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.14.0",
+        "answers": {
+          "risco_atraso": {
+            "type": "noul",
+            "noul": 0.86
+          },
+          "condicao_operacional": {
+            "type": "choice",
+            "choice": "critica",
+            "confidence": 0.77,
+            "probabilities": {
+              "normal": 0.0,
+              "atencao": 0.17,
+              "critica": 0.83,
+              "indefinida": 0.0
+            }
+          },
+          "dificuldade_acesso": {
+            "type": "score",
+            "score": 2.11,
+            "confidence": 0.89,
+            "legend": {
+              "0": "Baixa: via plana, bem conservada e com fluxo livre.",
+              "1": "M\u00e9dia: alguns trechos lentos ou aclives moderados.",
+              "2": "Alta: aclives fortes, obras ou pista em m\u00e1s condi\u00e7\u00f5es.",
+              "3": "Muito alta: trecho perigoso ou quase intransit\u00e1vel para caminh\u00e3o pesado."
+            },
+            "probabilities": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.89,
+              "3": 0.11
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 768,
+          "output_tokens": 96
+        }
+      },
+      "answers": {
+        "risco_atraso": {
+          "type": "noul",
+          "noul": 0.86
+        },
+        "condicao_operacional": {
+          "type": "choice",
+          "choice": "critica",
+          "probabilities": {
+            "normal": 0.0,
+            "atencao": 0.17,
+            "critica": 0.83,
+            "indefinida": 0.0
+          },
+          "confidence": 0.77
+        },
+        "dificuldade_acesso": {
+          "type": "score",
+          "score": 2.11,
+          "score_normalized": 0.7033333333333333,
+          "legend": {
+            "0": "Baixa: via plana, bem conservada e com fluxo livre.",
+            "1": "M\u00e9dia: alguns trechos lentos ou aclives moderados.",
+            "2": "Alta: aclives fortes, obras ou pista em m\u00e1s condi\u00e7\u00f5es.",
+            "3": "Muito alta: trecho perigoso ou quase intransit\u00e1vel para caminh\u00e3o pesado."
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.89,
+            "3": 0.11
+          },
+          "confidence": 0.89
+        }
+      },
+      "http_status": 200,
+      "attempts": 1
+    },
+    "B": {
+      "request": {
+        "model": "jev-latest",
+        "state": {
+          "rota": "B - rodovia plana",
+          "distancia_km": 118,
+          "trecho_critico": "nenhum, pista duplicada e plana",
+          "clima_previsto": "tempo seco",
+          "obras": "nenhuma registrada",
+          "historico": "fluxo normal nesse hor\u00e1rio",
+          "carga_t": 24,
+          "saida_prevista": "12h30",
+          "janela_entrega": "at\u00e9 16h no CD de destino"
+        },
+        "questions": {
+          "risco_atraso": {
+            "type": "noul",
+            "instructions": "Considerando o contexto da rota, o caminh\u00e3o corre risco relevante de perder a janela de entrega?",
+            "criteria": {
+              "true": "H\u00e1 fatores concretos que tornam prov\u00e1vel perder a janela (clima, obras, aclive com carga pesada, lentid\u00e3o recorrente).",
+              "false": "N\u00e3o h\u00e1 fatores concretos de atraso; a viagem tende a cumprir a janela."
+            }
+          },
+          "condicao_operacional": {
+            "type": "choice",
+            "instructions": "Qual \u00e9 a condi\u00e7\u00e3o operacional desta rota para a viagem descrita?",
+            "criteria": {
+              "normal": "Sem restri\u00e7\u00f5es relevantes; opera\u00e7\u00e3o dentro do padr\u00e3o.",
+              "atencao": "H\u00e1 fatores que pedem cuidado ou podem gerar algum atraso.",
+              "critica": "H\u00e1 fatores graves que colocam a entrega ou a seguran\u00e7a em risco.",
+              "indefinida": "O contexto n\u00e3o traz informa\u00e7\u00e3o suficiente para avaliar."
+            }
+          },
+          "dificuldade_acesso": {
+            "type": "score",
+            "instructions": "Qual \u00e9 a dificuldade de acesso e de tr\u00e1fego desta rota para um caminh\u00e3o carregado?",
+            "criteria": [
+              "Baixa: via plana, bem conservada e com fluxo livre.",
+              "M\u00e9dia: alguns trechos lentos ou aclives moderados.",
+              "Alta: aclives fortes, obras ou pista em m\u00e1s condi\u00e7\u00f5es.",
+              "Muito alta: trecho perigoso ou quase intransit\u00e1vel para caminh\u00e3o pesado."
+            ]
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.14.0",
+        "answers": {
+          "risco_atraso": {
+            "type": "noul",
+            "noul": 0.11
+          },
+          "condicao_operacional": {
+            "type": "choice",
+            "choice": "normal",
+            "confidence": 0.97,
+            "probabilities": {
+              "normal": 0.98,
+              "atencao": 0.02,
+              "critica": 0.0,
+              "indefinida": 0.0
+            }
+          },
+          "dificuldade_acesso": {
+            "type": "score",
+            "score": 0.0,
+            "confidence": 1.0,
+            "legend": {
+              "0": "Baixa: via plana, bem conservada e com fluxo livre.",
+              "1": "M\u00e9dia: alguns trechos lentos ou aclives moderados.",
+              "2": "Alta: aclives fortes, obras ou pista em m\u00e1s condi\u00e7\u00f5es.",
+              "3": "Muito alta: trecho perigoso ou quase intransit\u00e1vel para caminh\u00e3o pesado."
+            },
+            "probabilities": {
+              "0": 1.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 729,
+          "output_tokens": 95
+        }
+      },
+      "answers": {
+        "risco_atraso": {
+          "type": "noul",
+          "noul": 0.11
+        },
+        "condicao_operacional": {
+          "type": "choice",
+          "choice": "normal",
+          "probabilities": {
+            "normal": 0.98,
+            "atencao": 0.02,
+            "critica": 0.0,
+            "indefinida": 0.0
+          },
+          "confidence": 0.97
+        },
+        "dificuldade_acesso": {
+          "type": "score",
+          "score": 0.0,
+          "score_normalized": 0.0,
+          "legend": {
+            "0": "Baixa: via plana, bem conservada e com fluxo livre.",
+            "1": "M\u00e9dia: alguns trechos lentos ou aclives moderados.",
+            "2": "Alta: aclives fortes, obras ou pista em m\u00e1s condi\u00e7\u00f5es.",
+            "3": "Muito alta: trecho perigoso ou quase intransit\u00e1vel para caminh\u00e3o pesado."
+          },
+          "probabilities": {
+            "0": 1.0,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0
+          },
+          "confidence": 1.0
+        }
+      },
+      "http_status": 200,
+      "attempts": 1
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "run_id": "20261125T214623Z",
+  "job_id": "dc3ljc5s2omc738dr9ig",
+  "submitted_at_utc": "2026-11-25T21:57:01.221813+00:00",
+  "shots": 4096,
+  "backend": "ibm_fez",
+  "logical_depth": 7,
+  "transpiled_depth": 18,
+  "transpiled_two_qubit_gates": 2,
+  "transpiled_two_qubit_gate_names": {
+    "cz": 2
+  },
+  "p": 1,
+  "parameters": [
+    5.374412373485508,
+    3.86247994140693
+  ]
+}

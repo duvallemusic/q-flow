@@ -2,7 +2,7 @@
 
 Proposta de startup B2B para o Qiskit Fall Fest 2026 (IBM + FIAP). Integra dados históricos, Jev, machine learning, otimização clássica e Qiskit.
 
-**Estado atual (PoC v0.1):** camada clássica/quântica local implementada e testada. Exemplo de dois bits verificado; QAOA ideal executado com primitives V2; ruído via Aer; IBM preparado em dry-run. Sem alegação de vantagem quântica nem economia real de combustível.
+**Estado atual (PoC v0.1 + Jev):** camada clássica/quântica implementada e testada (40 testes). Exemplo de dois bits verificado; QAOA ideal executado com primitives V2; ruído via Aer; QAOA executado no IBM Kingston (job `dc3ibmdhdvas73bnvcfg`) e, com o risco do Jev no QUBO, no IBM Fez (job `dc3ljc5s2omc738dr9ig`). Sem alegação de vantagem quântica nem economia real de combustível.
 
 Repositório: https://github.com/duvallemusic/q-flow
 
@@ -57,6 +57,37 @@ python scripts/run_ibm_quantum.py --job-id JOB_ID
 
 Artefatos em `results/quantum_poc_v0.1/`.
 
+## Replicar a prova Jev + IBM
+
+Os números da apresentação saem destes arquivos:
+
+| Resultado | Arquivo |
+|---|---|
+| IBM Kingston: 96,5% das medições no ótimo (job `dc3ibmdhdvas73bnvcfg`) | `results/quantum_poc_v0.1/ibm_quantum_results.json` |
+| Jev (`jev-1.14.0`): risco de atraso 0,86 na rota A e 0,11 na rota B | `results/jev_poc_v0.1/jev_responses.json` |
+| QUBO com o risco do Jev e decisão ótima | `results/jev_poc_v0.1/qubo_jev.json` |
+| IBM Fez: 88,8% das medições no ótimo (job `dc3ljc5s2omc738dr9ig`) | `results/jev_poc_v0.1/ibm_results.json` |
+| Benchmark de escala (4, 6 e 9 qubits) | `results/scaling_benchmark_v0.2/benchmark.json` |
+
+```bash
+# 1) Sem chave: testes e a mesma rodada usando as respostas salvas do Jev
+pytest
+cp -r results/jev_poc_v0.1 results/replica_jev
+python scripts/run_jev_pipeline.py --reuse-jev --results-dir results/replica_jev
+
+# 2) Com chaves em credentials/ (pasta ignorada pelo git): chama o Jev e a IBM de novo
+python scripts/run_jev_pipeline.py --results-dir results/minha_rodada
+python scripts/run_jev_pipeline.py --ibm-dry-run --results-dir results/minha_rodada
+python scripts/run_jev_pipeline.py --ibm-execute --results-dir results/minha_rodada
+
+# 3) Benchmark de escala no simulador (regrava results/scaling_benchmark_v0.2)
+python scripts/run_scaling_benchmark.py
+```
+
+No PowerShell, troque o `cp -r` por `Copy-Item -Recurse results\jev_poc_v0.1 results\replica_jev`.
+
+O que esperar: o QUBO (`F = 1520 - 425 x1 - 425 x2 + 70 x1x2`) e a decisão ótima (`11`) saem idênticos. No simulador, o melhor resultado foi 97,1% no Windows 11 e 96,6% no Linux; no hardware, cada job varia um pouco. Como criar os arquivos de chave: [experiments/04_jev_integration/README.md](experiments/04_jev_integration/README.md).
+
 ## Escopo da PoC v0.1
 - CDC: QUBO, Ising (`SparsePauliOp`), one-hot, compilador de planos sintéticos
 - Clássico: enumeração, guloso individual, uniforme, enumeração factível
@@ -65,10 +96,10 @@ Artefatos em `results/quantum_poc_v0.1/`.
 - IBM: dry-run obrigatório; `--execute` guarda submissão
 - Cenário D (12 vars): apenas clássico (QAOA skipped — ver known issues)
 
-Fora de escopo agora: Jev real, ML calibrado, warm-start completo, ASR completo, piloto com cliente.
+Fora de escopo agora: ML calibrado, warm-start completo, ASR completo, piloto com cliente. O Jev real entrou na integração de `experiments/04_jev_integration/`.
 
 ## Governança
-Não commitar telemetria de clientes, chaves, `.env` ou dados pessoais. Repositório privado. Licença não definida.
+Não commitar telemetria de clientes, chaves, `.env` ou dados pessoais. Licença não definida.
 
 ## Transparência
-ChatGPT/Cursor foram usados como apoio à pesquisa, modelagem, código, redação e diagramas. Resultados não validados estão classificados nos relatórios.
+ChatGPT, Cursor e Claude foram usados como apoio à pesquisa, modelagem, código, redação e diagramas. Os resultados numéricos saem dos scripts, da API do Jev e dos jobs da IBM, não da IA. Resultados não validados estão classificados nos relatórios.

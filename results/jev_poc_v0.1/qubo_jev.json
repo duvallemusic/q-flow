@@ -1,0 +1,144 @@
+{
+  "run_id": "20261125T214623Z",
+  "created_at_utc": "2026-11-25T21:46:23.833809+00:00",
+  "synthetic_scenario": true,
+  "delay_penalty_brl": 500.0,
+  "congestion_both_a_brl": 70.0,
+  "signals": {
+    "A": {
+      "delay_probability": 0.86,
+      "condition": "critica",
+      "condition_confidence": 0.77,
+      "access_difficulty_score": 2.11,
+      "access_difficulty_normalized": 0.7033333333333333,
+      "human_review": true
+    },
+    "B": {
+      "delay_probability": 0.11,
+      "condition": "normal",
+      "condition_confidence": 0.97,
+      "access_difficulty_score": 0.0,
+      "access_difficulty_normalized": 0.0,
+      "human_review": false
+    }
+  },
+  "costs_without_jev": {
+    "truck_1": {
+      "A": {
+        "base_brl": 300.0,
+        "delay_probability": 0.0,
+        "risk_cost_brl": 0.0,
+        "total_brl": 300.0
+      },
+      "B": {
+        "base_brl": 320.0,
+        "delay_probability": 0.0,
+        "risk_cost_brl": 0.0,
+        "total_brl": 320.0
+      }
+    },
+    "truck_2": {
+      "A": {
+        "base_brl": 290.0,
+        "delay_probability": 0.0,
+        "risk_cost_brl": 0.0,
+        "total_brl": 290.0
+      },
+      "B": {
+        "base_brl": 310.0,
+        "delay_probability": 0.0,
+        "risk_cost_brl": 0.0,
+        "total_brl": 310.0
+      }
+    }
+  },
+  "costs_with_jev": {
+    "truck_1": {
+      "A": {
+        "base_brl": 300.0,
+        "delay_probability": 0.86,
+        "risk_cost_brl": 430.0,
+        "total_brl": 730.0
+      },
+      "B": {
+        "base_brl": 320.0,
+        "delay_probability": 0.11,
+        "risk_cost_brl": 55.0,
+        "total_brl": 375.0
+      }
+    },
+    "truck_2": {
+      "A": {
+        "base_brl": 290.0,
+        "delay_probability": 0.86,
+        "risk_cost_brl": 430.0,
+        "total_brl": 720.0
+      },
+      "B": {
+        "base_brl": 310.0,
+        "delay_probability": 0.11,
+        "risk_cost_brl": 55.0,
+        "total_brl": 365.0
+      }
+    }
+  },
+  "qubo_without_jev": {
+    "offset": 660.0,
+    "linear": {
+      "0": -50.0,
+      "1": -50.0
+    },
+    "quadratic": {
+      "0,1": 70.0
+    },
+    "formula": "F = 660 - 50 x1 - 50 x2 + 70 x1x2",
+    "values_brl": {
+      "00": 660.0,
+      "01": 610.0,
+      "10": 610.0,
+      "11": 630.0
+    },
+    "optimal_bitstrings": [
+      "01",
+      "10"
+    ],
+    "encoding": "x=0 -> rota A, x=1 -> rota B"
+  },
+  "qubo_with_jev": {
+    "offset": 1520.0,
+    "linear": {
+      "0": -425.0,
+      "1": -425.0
+    },
+    "quadratic": {
+      "0,1": 70.0
+    },
+    "formula": "F = 1520 - 425 x1 - 425 x2 + 70 x1x2",
+    "values_brl": {
+      "00": 1520.0,
+      "01": 1095.0,
+      "10": 1095.0,
+      "11": 740.0
+    },
+    "optimal_bitstrings": [
+      "11"
+    ],
+    "encoding": "x=0 -> rota A, x=1 -> rota B"
+  },
+  "decision_changed": true,
+  "classical": {
+    "without_jev": {
+      "optimal_cost": 610.0,
+      "optima": [
+        "01",
+        "10"
+      ]
+    },
+    "with_jev": {
+      "optimal_cost": 740.0,
+      "optima": [
+        "11"
+      ]
+    }
+  }
+}

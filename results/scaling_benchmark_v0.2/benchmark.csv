@@ -1,0 +1,4 @@
+scenario,qubits,feasible_solutions,qaoa_optimal_probability,uniform_optimal_probability_sampled,n_optimal_bitstrings,uniform_optimal_probability_exact,qaoa_feasibility_rate,qaoa_status,transpiled_depth,cz_count
+A,4,4,0.1923828125,0.1220703125,2,0.125,0.436279296875,completed,28,8
+B,6,8,0.034423828125,0.018798828125,1,0.015625,0.34228515625,completed,42,12
+C,9,27,0.000732421875,0.001220703125,1,0.001953125,0.10595703125,completed,56,24

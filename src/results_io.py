@@ -31,7 +31,9 @@ def utc_now() -> str:
 def git_commit(repo: Path) -> str | None:
     try:
         return (
-            subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip()
+            subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=repo, text=True, stderr=subprocess.DEVNULL
+            ).strip()
         )
     except Exception:  # noqa: BLE001
         return None

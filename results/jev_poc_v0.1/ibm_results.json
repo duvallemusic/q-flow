@@ -1,0 +1,32 @@
+{
+  "run_id": "20261125T214623Z",
+  "mode": "execute",
+  "job_id": "dc3ljc5s2omc738dr9ig",
+  "backend": "ibm_fez",
+  "fetched_at_utc": "2026-11-25T21:57:11.563694+00:00",
+  "status": "completed",
+  "counts": {
+    "11": 3637,
+    "01": 218,
+    "10": 204,
+    "00": 37
+  },
+  "shots": 4096,
+  "tvd_vs_ideal": 0.083251953125,
+  "most_frequent": "11",
+  "optimal_probability": 0.887939453125,
+  "optimal_probability_wilson_95": [
+    0.8779132579765001,
+    0.8972386405748976
+  ],
+  "feasibility_rate": null,
+  "best_observed_bitstring": "11",
+  "best_observed_cost": 740.0,
+  "expected_cost": 783.62060546875,
+  "distribution": {
+    "11": 0.887939453125,
+    "01": 0.05322265625,
+    "10": 0.0498046875,
+    "00": 0.009033203125
+  }
+}

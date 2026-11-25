@@ -1,0 +1,474 @@
+{
+  "run_id": "20261125T214623Z",
+  "created_at_utc": "2026-11-25T21:46:30.146384+00:00",
+  "environment": {
+    "captured_at_utc": "2026-11-25T21:46:32.094157+00:00",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "git_commit": null,
+    "versions": {
+      "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+      "qiskit": "2.6.2",
+      "qiskit_aer": "0.18.4",
+      "qiskit_ibm_runtime": "0.52.1",
+      "numpy": "2.5.5",
+      "scipy": "1.18.1",
+      "pandas": "3.1.1",
+      "matplotlib": "3.11.2"
+    }
+  },
+  "selected_counts": {
+    "11": 3978,
+    "10": 47,
+    "01": 58,
+    "00": 13
+  },
+  "execution_type": "ideal_simulator",
+  "backend": "StatevectorEstimator+StatevectorSampler",
+  "model_metadata": {
+    "instance_id": "two_truck_jev",
+    "currency": "BRL",
+    "synthetic": true,
+    "description": "Dois caminhoes, rotas A/B, +congestionamento se os dois forem por A; risco do Jev nos termos lineares",
+    "encoding": "x=0 -> rota A, x=1 -> rota B",
+    "expected_values": {
+      "00": 1520.0,
+      "01": 1095.0,
+      "10": 1095.0,
+      "11": 740.0
+    },
+    "optimal_bitstrings": [
+      "11"
+    ]
+  },
+  "exact": {
+    "optimal_cost": 740.0,
+    "optima": [
+      {
+        "bitstring": "11",
+        "cost": 740.0
+      }
+    ]
+  },
+  "uniform_baseline": {
+    "method": "uniform_random",
+    "shots": 4096,
+    "seed": 42,
+    "counts": {
+      "01": 1023,
+      "10": 1004,
+      "00": 1070,
+      "11": 999
+    },
+    "optimal_probability": 0.243896484375,
+    "theoretical_optimal_probability": 0.25,
+    "runtime_seconds": 0.01645989999997255
+  },
+  "runs": [
+    {
+      "p": 1,
+      "seed": 42,
+      "shots": 4096,
+      "parameter_names": [
+        "\u03b2[0]",
+        "\u03b3[0]"
+      ],
+      "initial_parameters": [
+        4.862909272689599,
+        2.757554564287996
+      ],
+      "final_parameters": [
+        5.374412373485508,
+        3.86247994140693
+      ],
+      "objective_history": [
+        1180.817547138657,
+        1271.4602660011506,
+        1009.1825027339704,
+        1222.8732485800551,
+        869.5578392914402,
+        1173.0098942129557,
+        923.1102911181638,
+        1006.862321414459,
+        1317.6251056789397,
+        999.9419844925789,
+        1415.7906189453795,
+        874.2312275999008,
+        778.6824046838574,
+        1368.4625165688497,
+        1424.907244626314,
+        813.9542596329541,
+        1451.2572218826792,
+        1329.3334018496794,
+        781.3554595212076,
+        795.1975238140874,
+        758.2766387048985,
+        752.7437474573169,
+        754.9552626574838,
+        781.0115860074945,
+        756.9744314680465,
+        755.0343754167117,
+        752.7478336243705,
+        752.7368663138709,
+        753.0615147612601
+      ],
+      "n_evaluations": 98,
+      "n_iterations": 98,
+      "training_time_seconds": 0.9662978000005751,
+      "sampling_time_seconds": 0.01321879999977682,
+      "circuit_depth": 1,
+      "n_qubits": 2,
+      "two_qubit_gate_count": 2,
+      "n_logical_gates": 1,
+      "counts": {
+        "11": 3978,
+        "10": 47,
+        "01": 58,
+        "00": 13
+      },
+      "expected_energy": 752.7368663138709,
+      "most_frequent": "11",
+      "best_observed_bitstring": "11",
+      "best_observed_cost": 740.0,
+      "optimal_probability": 0.97119140625,
+      "optimal_probability_wilson_95": [
+        0.9656107050639748,
+        0.9758890836107876
+      ],
+      "feasibility_rate": null,
+      "expected_cost": 751.575927734375,
+      "optimizer_success": true,
+      "metadata": {
+        "optimizer": "COBYLA",
+        "n_restarts": 3,
+        "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
+        "estimator": "StatevectorEstimator",
+        "sampler": "StatevectorSampler",
+        "primitive_api": "V2",
+        "qubo_scale": 1.0,
+        "variational_operator_scale": 195.0,
+        "energy_units": "original_qubo_currency_units",
+        "identity_removed_from_ansatz": true,
+        "completed": true
+      }
+    },
+    {
+      "p": 1,
+      "seed": 123,
+      "shots": 4096,
+      "parameter_names": [
+        "\u03b2[0]",
+        "\u03b3[0]"
+      ],
+      "initial_parameters": [
+        4.287343201487349,
+        0.33816743455556175
+      ],
+      "final_parameters": [
+        2.2001277291805748,
+        5.030576707849175
+      ],
+      "objective_history": [
+        1396.1564757018853,
+        827.535584376933,
+        1457.3957654080186,
+        1078.6286060536218,
+        1106.8363543359064,
+        917.0865497717372,
+        1296.7957001293244,
+        1312.866975039192,
+        786.7486531479107,
+        766.7626861175631,
+        1340.671353473704,
+        1359.3872659309243,
+        1219.9381671957626,
+        1332.8732987867672,
+        970.2147819006998,
+        1439.9129196066694,
+        829.1301225924883,
+        832.6604648525879,
+        861.0515492920857,
+        766.6308915273605,
+        815.7267400704128,
+        767.9045930512973,
+        784.5331667857461,
+        762.1536885688379,
+        760.8770029585874,
+        761.607715523846,
+        760.8886789283995,
+        761.2611799286162,
+        761.0013923502751
+      ],
+      "n_evaluations": 93,
+      "n_iterations": 93,
+      "training_time_seconds": 0.82146880000073,
+      "sampling_time_seconds": 0.012054699999680452,
+      "circuit_depth": 1,
+      "n_qubits": 2,
+      "two_qubit_gate_count": 2,
+      "n_logical_gates": 1,
+      "counts": {
+        "11": 3889,
+        "10": 93,
+        "01": 85,
+        "00": 29
+      },
+      "expected_energy": 760.8770029585874,
+      "most_frequent": "11",
+      "best_observed_bitstring": "11",
+      "best_observed_cost": 740.0,
+      "optimal_probability": 0.949462890625,
+      "optimal_probability_wilson_95": [
+        0.9423232484480659,
+        0.9557602287282232
+      ],
+      "feasibility_rate": null,
+      "expected_cost": 760.94970703125,
+      "optimizer_success": true,
+      "metadata": {
+        "optimizer": "COBYLA",
+        "n_restarts": 3,
+        "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
+        "estimator": "StatevectorEstimator",
+        "sampler": "StatevectorSampler",
+        "primitive_api": "V2",
+        "qubo_scale": 1.0,
+        "variational_operator_scale": 195.0,
+        "energy_units": "original_qubo_currency_units",
+        "identity_removed_from_ansatz": true,
+        "completed": true
+      }
+    },
+    {
+      "p": 2,
+      "seed": 42,
+      "shots": 4096,
+      "parameter_names": [
+        "\u03b2[0]",
+        "\u03b2[1]",
+        "\u03b3[0]",
+        "\u03b3[1]"
+      ],
+      "initial_parameters": [
+        4.862909272689599,
+        2.757554564287996,
+        5.3947298351621535,
+        4.381692553882582
+      ],
+      "final_parameters": [
+        6.301763791043159,
+        2.090477150032611,
+        5.402218730465114,
+        3.8414114626099165
+      ],
+      "objective_history": [
+        1323.935844794983,
+        1062.6608490049737,
+        1476.2218489990146,
+        1112.9398269158453,
+        1390.5820403957578,
+        948.0924390616676,
+        1016.4644765734407,
+        1053.788795344833,
+        1277.4661707294274,
+        1248.5783344808788,
+        1306.5250147033257,
+        800.2401420250516,
+        1208.9786637861714,
+        1465.1097378078928,
+        1007.6102653587992,
+        966.7987988974685,
+        1161.5968211256218,
+        1363.151242527413,
+        1237.2379312832622,
+        1014.3740989193159,
+        871.4302400790555,
+        1405.8675803424262,
+        1405.1061532618562,
+        810.1388903631614,
+        890.5378621148566,
+        885.7744629735178,
+        854.0415324718647,
+        881.8858573211817,
+        799.4007758914141,
+        789.4250870754071,
+        837.2023027159505,
+        792.7158139557484,
+        788.3058661173486,
+        821.526382508611,
+        784.9669719381614,
+        785.6389332545682,
+        793.1107916955418,
+        784.8967559175134,
+        786.8524555345064,
+        784.9159610556071,
+        785.0224508846866,
+        784.85475119616,
+        785.2851947184906
+      ],
+      "n_evaluations": 135,
+      "n_iterations": 135,
+      "training_time_seconds": 2.296783100000539,
+      "sampling_time_seconds": 0.02117610000004788,
+      "circuit_depth": 1,
+      "n_qubits": 2,
+      "two_qubit_gate_count": 4,
+      "n_logical_gates": 1,
+      "counts": {
+        "11": 3597,
+        "01": 246,
+        "10": 239,
+        "00": 14
+      },
+      "expected_energy": 784.85475119616,
+      "most_frequent": "11",
+      "best_observed_bitstring": "11",
+      "best_observed_cost": 740.0,
+      "optimal_probability": 0.878173828125,
+      "optimal_probability_wilson_95": [
+        0.8678009240614221,
+        0.8878380255018977
+      ],
+      "feasibility_rate": null,
+      "expected_cost": 784.700927734375,
+      "optimizer_success": true,
+      "metadata": {
+        "optimizer": "COBYLA",
+        "n_restarts": 3,
+        "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
+        "estimator": "StatevectorEstimator",
+        "sampler": "StatevectorSampler",
+        "primitive_api": "V2",
+        "qubo_scale": 1.0,
+        "variational_operator_scale": 195.0,
+        "energy_units": "original_qubo_currency_units",
+        "identity_removed_from_ansatz": true,
+        "completed": true
+      }
+    },
+    {
+      "p": 2,
+      "seed": 123,
+      "shots": 4096,
+      "parameter_names": [
+        "\u03b2[0]",
+        "\u03b2[1]",
+        "\u03b3[0]",
+        "\u03b3[1]"
+      ],
+      "initial_parameters": [
+        4.287343201487349,
+        0.33816743455556175,
+        1.3845619148968347,
+        1.1584422520399775
+      ],
+      "final_parameters": [
+        5.4183742618237725,
+        0.4166297536516862,
+        2.4146428299624456,
+        1.26041162692747
+      ],
+      "objective_history": [
+        1118.4127522506838,
+        1114.7040775912483,
+        1161.9458259840515,
+        1075.0865088864466,
+        1112.5788805087323,
+        1221.8800481900855,
+        1101.6968222491907,
+        1065.3022640632435,
+        1091.7664496263296,
+        1177.880825462509,
+        1009.5596526980652,
+        1059.5856257611454,
+        962.4849839644702,
+        1194.105764936125,
+        775.5051325148575,
+        1062.5630890859006,
+        1172.5122458827,
+        787.2711283480346,
+        1187.7748308481093,
+        1130.1962409724606,
+        768.3981563092316,
+        1255.47869837094,
+        1229.7327598131442,
+        1234.8754779887806,
+        1058.7749456613187,
+        769.0270727023051,
+        807.1102317387029,
+        773.3768966965761,
+        794.6499023908475,
+        768.014275827693,
+        781.2804702035271,
+        768.0260666827552,
+        768.0417590562843,
+        771.3500161400295,
+        767.9642858313583,
+        767.4840364832758,
+        767.4909522474585,
+        767.491754344238,
+        767.6317041842543
+      ],
+      "n_evaluations": 126,
+      "n_iterations": 126,
+      "training_time_seconds": 2.0543877000000066,
+      "sampling_time_seconds": 0.018474699999387667,
+      "circuit_depth": 1,
+      "n_qubits": 2,
+      "two_qubit_gate_count": 4,
+      "n_logical_gates": 1,
+      "counts": {
+        "11": 3955,
+        "00": 140,
+        "01": 1
+      },
+      "expected_energy": 767.4840364832758,
+      "most_frequent": "11",
+      "best_observed_bitstring": "11",
+      "best_observed_cost": 740.0,
+      "optimal_probability": 0.965576171875,
+      "optimal_probability_wilson_95": [
+        0.9595421104170317,
+        0.970737732589586
+      ],
+      "feasibility_rate": null,
+      "expected_cost": 766.746826171875,
+      "optimizer_success": true,
+      "metadata": {
+        "optimizer": "COBYLA",
+        "n_restarts": 3,
+        "maxiter": 120,
+        "timeout_seconds": 120.0,
+        "timed_out": false,
+        "estimator": "StatevectorEstimator",
+        "sampler": "StatevectorSampler",
+        "primitive_api": "V2",
+        "qubo_scale": 1.0,
+        "variational_operator_scale": 195.0,
+        "energy_units": "original_qubo_currency_units",
+        "identity_removed_from_ansatz": true,
+        "completed": true
+      }
+    }
+  ],
+  "selected_parameters": {
+    "p": 1,
+    "seed": 42,
+    "parameter_names": [
+      "\u03b2[0]",
+      "\u03b3[0]"
+    ],
+    "final_parameters": [
+      5.374412373485508,
+      3.86247994140693
+    ],
+    "optimal_probability": 0.97119140625,
+    "expected_energy": 752.7368663138709
+  }
+}
