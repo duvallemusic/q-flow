@@ -1,0 +1,155 @@
+{
+  "run_id": "20261126T002147Z",
+  "created_at_utc": "2026-11-26T00:21:47.705762+00:00",
+  "scenario": "real",
+  "synthetic_scenario": false,
+  "base_costs_brl": {
+    "truck_1": {
+      "A": 438.79,
+      "B": 499.09
+    },
+    "truck_2": {
+      "A": 484.18,
+      "B": 550.71
+    }
+  },
+  "delay_penalty_brl": 500.0,
+  "congestion_both_a_brl": 70.0,
+  "signals": {
+    "A": {
+      "delay_probability": 0.33,
+      "condition": "atencao",
+      "condition_confidence": 0.75,
+      "access_difficulty_score": 1.44,
+      "access_difficulty_normalized": 0.48,
+      "human_review": false
+    },
+    "B": {
+      "delay_probability": 0.38,
+      "condition": "atencao",
+      "condition_confidence": 0.75,
+      "access_difficulty_score": 1.47,
+      "access_difficulty_normalized": 0.49,
+      "human_review": false
+    }
+  },
+  "costs_without_jev": {
+    "truck_1": {
+      "A": {
+        "base_brl": 438.79,
+        "delay_probability": 0.0,
+        "risk_cost_brl": 0.0,
+        "total_brl": 438.79
+      },
+      "B": {
+        "base_brl": 499.09,
+        "delay_probability": 0.0,
+        "risk_cost_brl": 0.0,
+        "total_brl": 499.09
+      }
+    },
+    "truck_2": {
+      "A": {
+        "base_brl": 484.18,
+        "delay_probability": 0.0,
+        "risk_cost_brl": 0.0,
+        "total_brl": 484.18
+      },
+      "B": {
+        "base_brl": 550.71,
+        "delay_probability": 0.0,
+        "risk_cost_brl": 0.0,
+        "total_brl": 550.71
+      }
+    }
+  },
+  "costs_with_jev": {
+    "truck_1": {
+      "A": {
+        "base_brl": 438.79,
+        "delay_probability": 0.33,
+        "risk_cost_brl": 165.0,
+        "total_brl": 603.79
+      },
+      "B": {
+        "base_brl": 499.09,
+        "delay_probability": 0.38,
+        "risk_cost_brl": 190.0,
+        "total_brl": 689.0899999999999
+      }
+    },
+    "truck_2": {
+      "A": {
+        "base_brl": 484.18,
+        "delay_probability": 0.33,
+        "risk_cost_brl": 165.0,
+        "total_brl": 649.1800000000001
+      },
+      "B": {
+        "base_brl": 550.71,
+        "delay_probability": 0.38,
+        "risk_cost_brl": 190.0,
+        "total_brl": 740.71
+      }
+    }
+  },
+  "qubo_without_jev": {
+    "offset": 992.97,
+    "linear": {
+      "0": -9.700000000000045,
+      "1": -3.4699999999999704
+    },
+    "quadratic": {
+      "0,1": 70.0
+    },
+    "formula": "F = 992.97 - 9.7 x1 - 3.47 x2 + 70 x1x2",
+    "values_brl": {
+      "00": 992.97,
+      "01": 989.5,
+      "10": 983.27,
+      "11": 1049.8
+    },
+    "optimal_bitstrings": [
+      "10"
+    ],
+    "encoding": "x=0 -> rota A, x=1 -> rota B"
+  },
+  "qubo_with_jev": {
+    "offset": 1322.97,
+    "linear": {
+      "0": 15.299999999999955,
+      "1": 21.529999999999973
+    },
+    "quadratic": {
+      "0,1": 70.0
+    },
+    "formula": "F = 1322.97 + 15.3 x1 + 21.53 x2 + 70 x1x2",
+    "values_brl": {
+      "00": 1322.97,
+      "01": 1344.5,
+      "10": 1338.27,
+      "11": 1429.8
+    },
+    "optimal_bitstrings": [
+      "00"
+    ],
+    "encoding": "x=0 -> rota A, x=1 -> rota B"
+  },
+  "decision_changed": true,
+  "classical": {
+    "without_jev": {
+      "optimal_cost": 983.27,
+      "optima": [
+        "10"
+      ]
+    },
+    "with_jev": {
+      "optimal_cost": 1322.97,
+      "optima": [
+        "00"
+      ]
+    }
+  },
+  "team_parameters_note": "parametro da equipe, nao medido",
+  "sources_file": "sources.json"
+}

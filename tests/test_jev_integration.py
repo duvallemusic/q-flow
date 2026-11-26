@@ -295,7 +295,7 @@ def test_pipeline_uses_typesafe_endpoint(tmp_path, monkeypatch):
     out = tmp_path / "results"
     args = ["--credentials-dir", str(creds), "--results-dir", str(out), "--shots", "512", "--jev-provider", "typesafe"]
     assert pipeline.main(args) == 0
-    assert seen == {"url": "https://api.typesafe.ai/v1/systemone", "model": "jev-latest"}
+    assert seen == {"url": "https://api.typesafe.ai/v1/systemone", "model": "jev-1.14.0"}
     saved = json.loads((out / "jev_responses.json").read_text(encoding="utf-8"))
     assert saved["provider"] == "typesafe"
     assert "api.typesafe.ai" in (out / "REPORT.md").read_text(encoding="utf-8")

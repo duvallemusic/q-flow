@@ -1,0 +1,262 @@
+{
+  "scenario": "real",
+  "corridor": {
+    "name": "Sao Paulo (Sacoma, SP) -> Santos (Porto de Santos, SP)",
+    "state_uf": "SP",
+    "origin_name": "Sao Paulo (Sacoma, SP)",
+    "origin_lon": -46.6025,
+    "origin_lat": -23.6012,
+    "destination_name": "Santos (Porto de Santos, SP)",
+    "destination_lon": -46.3225,
+    "destination_lat": -23.954
+  },
+  "departure_hour": "2026-11-25T22:00",
+  "generated_at_utc": "2026-11-26T00:21:47.237587+00:00",
+  "items": {
+    "rota_A_distancia": {
+      "valor": 64.26,
+      "unidade": "km",
+      "url": "https://router.project-osrm.org/route/v1/driving/-46.602500,-23.601200;-46.322500,-23.954000?alternatives=true&overview=simplified&geometries=geojson&steps=true",
+      "consultado_em_utc": "2026-11-26T00:21:44.372461+00:00",
+      "resposta_bruta": {
+        "distance_m": 64255.7,
+        "duration_s": 3862.0,
+        "summary": "Rodovia Anchieta, Avenida Martins Fontes"
+      }
+    },
+    "rota_A_duracao": {
+      "valor": 64.4,
+      "unidade": "min",
+      "url": "https://router.project-osrm.org/route/v1/driving/-46.602500,-23.601200;-46.322500,-23.954000?alternatives=true&overview=simplified&geometries=geojson&steps=true",
+      "consultado_em_utc": "2026-11-26T00:21:44.372461+00:00",
+      "resposta_bruta": {
+        "distance_m": 64255.7,
+        "duration_s": 3862.0,
+        "summary": "Rodovia Anchieta, Avenida Martins Fontes"
+      }
+    },
+    "rota_B_distancia": {
+      "valor": 73.09,
+      "unidade": "km",
+      "url": "https://router.project-osrm.org/route/v1/driving/-46.602500,-23.601200;-46.322500,-23.954000?alternatives=true&overview=simplified&geometries=geojson&steps=true",
+      "consultado_em_utc": "2026-11-26T00:21:44.372461+00:00",
+      "resposta_bruta": {
+        "distance_m": 73095.0,
+        "duration_s": 3997.4,
+        "summary": "Rodovia dos Imigrantes, Rodovia Anchieta"
+      }
+    },
+    "rota_B_duracao": {
+      "valor": 66.6,
+      "unidade": "min",
+      "url": "https://router.project-osrm.org/route/v1/driving/-46.602500,-23.601200;-46.322500,-23.954000?alternatives=true&overview=simplified&geometries=geojson&steps=true",
+      "consultado_em_utc": "2026-11-26T00:21:44.372461+00:00",
+      "resposta_bruta": {
+        "distance_m": 73095.0,
+        "duration_s": 3997.4,
+        "summary": "Rodovia dos Imigrantes, Rodovia Anchieta"
+      }
+    },
+    "clima_rota_A_chuva": {
+      "valor": 0.4,
+      "unidade": "mm",
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=-23.88867&longitude=-46.48768&hourly=precipitation,wind_speed_10m&timezone=America/Sao_Paulo&forecast_days=2",
+      "consultado_em_utc": "2026-11-26T00:21:45.225224+00:00",
+      "resposta_bruta": {
+        "latitude": -23.866432,
+        "longitude": -46.476196,
+        "timezone": "America/Sao_Paulo",
+        "hourly_units": {
+          "time": "iso8601",
+          "precipitation": "mm",
+          "wind_speed_10m": "km/h"
+        },
+        "matched_entry": {
+          "time": "2026-11-25T22:00",
+          "precipitation": 0.4,
+          "wind_speed_10m": 5.1
+        }
+      }
+    },
+    "clima_rota_A_vento": {
+      "valor": 5.1,
+      "unidade": "km/h",
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=-23.88867&longitude=-46.48768&hourly=precipitation,wind_speed_10m&timezone=America/Sao_Paulo&forecast_days=2",
+      "consultado_em_utc": "2026-11-26T00:21:45.225224+00:00",
+      "resposta_bruta": {
+        "latitude": -23.866432,
+        "longitude": -46.476196,
+        "timezone": "America/Sao_Paulo",
+        "hourly_units": {
+          "time": "iso8601",
+          "precipitation": "mm",
+          "wind_speed_10m": "km/h"
+        },
+        "matched_entry": {
+          "time": "2026-11-25T22:00",
+          "precipitation": 0.4,
+          "wind_speed_10m": 5.1
+        }
+      }
+    },
+    "clima_rota_B_chuva": {
+      "valor": 0.4,
+      "unidade": "mm",
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=-23.92426&longitude=-46.53385&hourly=precipitation,wind_speed_10m&timezone=America/Sao_Paulo&forecast_days=2",
+      "consultado_em_utc": "2026-11-26T00:21:45.720680+00:00",
+      "resposta_bruta": {
+        "latitude": -23.936731,
+        "longitude": -46.620758,
+        "timezone": "America/Sao_Paulo",
+        "hourly_units": {
+          "time": "iso8601",
+          "precipitation": "mm",
+          "wind_speed_10m": "km/h"
+        },
+        "matched_entry": {
+          "time": "2026-11-25T22:00",
+          "precipitation": 0.4,
+          "wind_speed_10m": 4.4
+        }
+      }
+    },
+    "clima_rota_B_vento": {
+      "valor": 4.4,
+      "unidade": "km/h",
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=-23.92426&longitude=-46.53385&hourly=precipitation,wind_speed_10m&timezone=America/Sao_Paulo&forecast_days=2",
+      "consultado_em_utc": "2026-11-26T00:21:45.720680+00:00",
+      "resposta_bruta": {
+        "latitude": -23.936731,
+        "longitude": -46.620758,
+        "timezone": "America/Sao_Paulo",
+        "hourly_units": {
+          "time": "iso8601",
+          "precipitation": "mm",
+          "wind_speed_10m": "km/h"
+        },
+        "matched_entry": {
+          "time": "2026-11-25T22:00",
+          "precipitation": 0.4,
+          "wind_speed_10m": 4.4
+        }
+      }
+    },
+    "diesel_s10_anp": {
+      "valor": 7.2839,
+      "unidade": "R$/litro",
+      "estado": "SP",
+      "semana_iso": "2026-W47",
+      "semana_coleta": "2026-11-16 a 2026-11-19",
+      "url": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/qus/ultimas-4-semanas-diesel-gnv.csv",
+      "consultado_em_utc": "2026-11-26T00:21:46.256546+00:00",
+      "resposta_bruta": {
+        "semana_iso": "2026-W47",
+        "periodo_coleta": "2026-11-16 a 2026-11-19",
+        "n_amostras": 886,
+        "amostra_linhas": [
+          {
+            "estado": "SP",
+            "municipio": "ADAMANTINA",
+            "produto": "DIESEL S10",
+            "data_coleta": "2026-11-17",
+            "valor_venda_brl": 7.03
+          },
+          {
+            "estado": "SP",
+            "municipio": "ADAMANTINA",
+            "produto": "DIESEL S10",
+            "data_coleta": "2026-11-17",
+            "valor_venda_brl": 7.03
+          },
+          {
+            "estado": "SP",
+            "municipio": "ADAMANTINA",
+            "produto": "DIESEL S10",
+            "data_coleta": "2026-11-17",
+            "valor_venda_brl": 7.38
+          },
+          {
+            "estado": "SP",
+            "municipio": "ADAMANTINA",
+            "produto": "DIESEL S10",
+            "data_coleta": "2026-11-17",
+            "valor_venda_brl": 8.09
+          },
+          {
+            "estado": "SP",
+            "municipio": "ARARAQUARA",
+            "produto": "DIESEL S10",
+            "data_coleta": "2026-11-16",
+            "valor_venda_brl": 7.39
+          }
+        ]
+      }
+    },
+    "antt_ccd_5_eixos_carga_geral": {
+      "valor": 6.8284,
+      "unidade": "R$/km",
+      "norma": "Portaria SUROC n. 22, de 28/09/2026 (vigente desde 30/09/2026; Anexo II da Resolucao ANTT n. 5.867/2020; diesel S10 ref. R$ 7,33/L)",
+      "url": "https://www.gov.br/antt/pt-br/assuntos/ultimas-noticias-antt/antt-atualiza-coeficientes-do-piso-minimo-do-frete-e-divulga-novo-preco-de-referencia-do-diesel",
+      "url_tabela": "https://www.legisweb.com.br/legislacao/?legislacao=502245",
+      "consultado_em_utc": "2026-11-26T00:21:47.237567+00:00",
+      "resposta_bruta": "Tabela A, Carga Geral, 5 eixos: CCD = 6,8284 R$/km; CC = R$ 657,56 (Portaria SUROC n. 22/2026)"
+    },
+    "antt_ccd_6_eixos_carga_geral": {
+      "valor": 7.5347,
+      "unidade": "R$/km",
+      "norma": "Portaria SUROC n. 22, de 28/09/2026 (vigente desde 30/09/2026; Anexo II da Resolucao ANTT n. 5.867/2020; diesel S10 ref. R$ 7,33/L)",
+      "url": "https://www.gov.br/antt/pt-br/assuntos/ultimas-noticias-antt/antt-atualiza-coeficientes-do-piso-minimo-do-frete-e-divulga-novo-preco-de-referencia-do-diesel",
+      "url_tabela": "https://www.legisweb.com.br/legislacao/?legislacao=502245",
+      "consultado_em_utc": "2026-11-26T00:21:47.237567+00:00",
+      "resposta_bruta": "Tabela A, Carga Geral, 6 eixos: CCD = 7,5347 R$/km; CC = R$ 671,93 (Portaria SUROC n. 22/2026)"
+    },
+    "custo_base_truck_1_rota_A": {
+      "valor": 438.79,
+      "unidade": "BRL",
+      "formula": "64.26 km x 6.8284 R$/km (5 eixos)",
+      "url": "https://www.gov.br/antt/pt-br/assuntos/ultimas-noticias-antt/antt-atualiza-coeficientes-do-piso-minimo-do-frete-e-divulga-novo-preco-de-referencia-do-diesel",
+      "consultado_em_utc": "2026-11-26T00:21:47.237567+00:00",
+      "resposta_bruta": "derivado de distancia OSRM x CCD ANTT 5 eixos"
+    },
+    "custo_base_truck_1_rota_B": {
+      "valor": 499.09,
+      "unidade": "BRL",
+      "formula": "73.09 km x 6.8284 R$/km (5 eixos)",
+      "url": "https://www.gov.br/antt/pt-br/assuntos/ultimas-noticias-antt/antt-atualiza-coeficientes-do-piso-minimo-do-frete-e-divulga-novo-preco-de-referencia-do-diesel",
+      "consultado_em_utc": "2026-11-26T00:21:47.237567+00:00",
+      "resposta_bruta": "derivado de distancia OSRM x CCD ANTT 5 eixos"
+    },
+    "custo_base_truck_2_rota_A": {
+      "valor": 484.18,
+      "unidade": "BRL",
+      "formula": "64.26 km x 7.5347 R$/km (6 eixos)",
+      "url": "https://www.gov.br/antt/pt-br/assuntos/ultimas-noticias-antt/antt-atualiza-coeficientes-do-piso-minimo-do-frete-e-divulga-novo-preco-de-referencia-do-diesel",
+      "consultado_em_utc": "2026-11-26T00:21:47.237567+00:00",
+      "resposta_bruta": "derivado de distancia OSRM x CCD ANTT 6 eixos"
+    },
+    "custo_base_truck_2_rota_B": {
+      "valor": 550.71,
+      "unidade": "BRL",
+      "formula": "73.09 km x 7.5347 R$/km (6 eixos)",
+      "url": "https://www.gov.br/antt/pt-br/assuntos/ultimas-noticias-antt/antt-atualiza-coeficientes-do-piso-minimo-do-frete-e-divulga-novo-preco-de-referencia-do-diesel",
+      "consultado_em_utc": "2026-11-26T00:21:47.237567+00:00",
+      "resposta_bruta": "derivado de distancia OSRM x CCD ANTT 6 eixos"
+    },
+    "multa_atraso": {
+      "valor": 500.0,
+      "unidade": "BRL",
+      "origem": "parametro da equipe, nao medido",
+      "url": null,
+      "consultado_em_utc": "2026-11-26T00:21:47.237567+00:00",
+      "resposta_bruta": "parametro da equipe, nao medido"
+    },
+    "congestionamento_ambos_rota_A": {
+      "valor": 70.0,
+      "unidade": "BRL",
+      "origem": "parametro da equipe, nao medido",
+      "url": null,
+      "consultado_em_utc": "2026-11-26T00:21:47.237567+00:00",
+      "resposta_bruta": "parametro da equipe, nao medido"
+    }
+  }
+}

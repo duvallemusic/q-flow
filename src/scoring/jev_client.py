@@ -22,7 +22,7 @@ JEV_PROVIDERS: dict[str, dict[str, str]] = {
     },
     "typesafe": {
         "url": "https://api.typesafe.ai/v1/systemone",
-        "model": "jev-latest",
+        "model": "jev-1.14.0",  # "jev-latest" deixou de ser aceito pela API em 25/11/2026
         "keys_page": "https://console.typesafe.ai/keys",
     },
 }

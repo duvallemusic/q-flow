@@ -2,11 +2,12 @@
 """Prova Jev + Qiskit: contexto da rota -> Jev -> QUBO -> classico e QAOA -> IBM Quantum (opcional).
 
 Rodar na raiz do projeto:
-  python scripts/run_jev_pipeline.py                  chama o Jev, monta o QUBO e roda o simulador
-  python scripts/run_jev_pipeline.py --reuse-jev      refaz QUBO e simulador com as respostas ja salvas (nao gasta credito)
-  python scripts/run_jev_pipeline.py --ibm-dry-run    confere conta IBM, backend e circuito, sem enviar job
-  python scripts/run_jev_pipeline.py --ibm-execute    envia 1 job pro hardware (pede para digitar EXECUTE)
-  python scripts/run_jev_pipeline.py --ibm-job-id ID  busca o resultado de um job ja enviado
+  python scripts/run_jev_pipeline.py                                                 cenario v0.1 (sintetico), chama o Jev e roda o simulador
+  python scripts/run_jev_pipeline.py --scenario real --results-dir results/jev_poc_v0.2   cenario v0.2 com dados reais (OSRM, Open-Meteo, ANP, ANTT)
+  python scripts/run_jev_pipeline.py --reuse-jev                                     refaz QUBO e simulador com as respostas ja salvas (nao gasta credito)
+  python scripts/run_jev_pipeline.py --ibm-dry-run --results-dir results/jev_poc_v0.2     confere conta IBM, backend e circuito, sem enviar job
+  python scripts/run_jev_pipeline.py --ibm-execute --results-dir results/jev_poc_v0.2     envia 1 job pro hardware (pede para digitar EXECUTE)
+  python scripts/run_jev_pipeline.py --ibm-job-id ID                                 busca o resultado de um job ja enviado
 
 Chaves na pasta credentials/ (ignorada pelo git):
   credentials/jev_apikey.json   {"apikey": "..."}
@@ -43,6 +44,7 @@ from src.scoring.jev_client import (  # noqa: E402
     parse_answers,
 )
 from src.scoring.jev_logistics import (  # noqa: E402
+    BASE_COSTS_BRL,
     CONGESTION_BOTH_A_BRL,
     DEFAULT_DELAY_PENALTY_BRL,
     QUESTIONS,
@@ -51,6 +53,12 @@ from src.scoring.jev_logistics import (  # noqa: E402
     describe_bitstring,
     route_costs,
     route_signals,
+)
+from src.scoring.real_scenario import (  # noqa: E402
+    DEFAULT_CORRIDOR,
+    RealScenarioError,
+    build_real_scenario,
+    save_sources,
 )
 
 try:
@@ -143,6 +151,39 @@ def qubo_payload(model: QuboModel) -> dict[str, Any]:
     }
 
 
+def _extract_base_costs(qubo: dict[str, Any]) -> dict[str, dict[str, float]]:
+    """Recupera os custos base salvos em qubo_jev.json (funciona pra v0.1 e v0.2)."""
+    saved = qubo.get("base_costs_brl")
+    if isinstance(saved, dict) and "truck_1" in saved and "truck_2" in saved:
+        return {
+            truck: {route: float(val) for route, val in routes.items()}
+            for truck, routes in saved.items()
+        }
+    without = qubo.get("costs_without_jev")
+    if isinstance(without, dict) and "truck_1" in without and "truck_2" in without:
+        return {
+            truck: {route: float(info["base_brl"]) for route, info in routes.items()}
+            for truck, routes in without.items()
+        }
+    return BASE_COSTS_BRL
+
+
+def _corridor_from_args(args: argparse.Namespace) -> dict[str, Any]:
+    """Monta o corredor da consulta real, aceitando override pela linha de comando."""
+    corr = dict(DEFAULT_CORRIDOR)
+    if args.state:
+        corr["state_uf"] = args.state.strip().upper()
+    if args.origin_lon is not None:
+        corr["origin_lon"] = float(args.origin_lon)
+    if args.origin_lat is not None:
+        corr["origin_lat"] = float(args.origin_lat)
+    if args.dest_lon is not None:
+        corr["destination_lon"] = float(args.dest_lon)
+    if args.dest_lat is not None:
+        corr["destination_lat"] = float(args.dest_lat)
+    return corr
+
+
 # ---------------------------------------------------------------- fase 1: Jev
 
 
@@ -155,21 +196,25 @@ def call_jev_for_routes(
     timeout: float,
     out: Path,
     run_id: str,
+    route_states: dict[str, dict[str, Any]] | None = None,
+    scenario: str = "v0.1",
     ask: Callable[..., dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Uma chamada por rota (A e B), com as mesmas 3 perguntas. Salva tudo em jev_responses.json."""
     ask = ask or ask_jev
+    states = route_states or ROUTE_STATES
     record: dict[str, Any] = {
         "run_id": run_id,
         "created_at_utc": utc_now(),
         "provider": provider,
         "endpoint": url,
         "model": model,
-        "synthetic_scenario": True,
+        "scenario": scenario,
+        "synthetic_scenario": scenario == "v0.1",
         "complete": False,
         "routes": {},
     }
-    for route, state in ROUTE_STATES.items():
+    for route, state in states.items():
         print(f"  chamando o Jev para a rota {route}...")
         result = ask(state, QUESTIONS, api_key=api_key, model=model, url=url, timeout=timeout)
         record["routes"][route] = result
@@ -183,7 +228,7 @@ def load_saved_jev(out: Path) -> dict[str, Any]:
     record = load_json(out / "jev_responses.json", "Rode antes: python scripts/run_jev_pipeline.py")
     if not record.get("complete"):
         raise PipelineError("jev_responses.json esta incompleto (uma das rotas falhou). Rode sem --reuse-jev.")
-    for route in ROUTE_STATES:
+    for route in ("A", "B"):
         saved = record.get("routes", {}).get(route)
         if not saved:
             raise PipelineError(f"jev_responses.json nao tem a rota {route}. Rode sem --reuse-jev.")
@@ -195,9 +240,47 @@ def load_saved_jev(out: Path) -> dict[str, Any]:
 
 def run_jev_phase(args: argparse.Namespace, out: Path) -> int:
     out.mkdir(parents=True, exist_ok=True)
+    penalty = float(args.delay_penalty)
+    scenario = args.scenario
+    route_states = ROUTE_STATES
+    base_costs = BASE_COSTS_BRL
+    congestion_brl = CONGESTION_BOTH_A_BRL
+
+    if scenario == "real" and not args.reuse_jev:
+        print("\n[0/4] Cenario real (OSRM, Open-Meteo, ANP e ANTT)")
+        corr = _corridor_from_args(args)
+        real = build_real_scenario(
+            corridor=corr,
+            departure_hour=args.departure,
+            delay_penalty_brl=penalty,
+            congestion_both_a_brl=congestion_brl,
+            timeout=args.source_timeout,
+        )
+        route_states = real["route_states"]
+        base_costs = real["base_costs_brl"]
+        sources_path = save_sources(out, real["sources"])
+        print(f"  corredor: {corr['name']} (UF {corr['state_uf']}, saida {real['sources']['departure_hour']})")
+        for r in ("A", "B"):
+            st = route_states[r]
+            print(
+                f"  rota {r}: {st['distancia_km']} km | {st['duracao_estimada_min']} min | "
+                f"{st['clima_previsto']}"
+            )
+        print(
+            f"  diesel S10 ANP ({corr['state_uf']}): {brl(real['sources']['items']['diesel_s10_anp']['valor'])}/L "
+            f"(semana {real['sources']['items']['diesel_s10_anp']['semana_coleta']})"
+        )
+        print(f"  fontes salvas em {sources_path}")
+
     print("\n[1/4] Jev")
     if args.reuse_jev:
         jev = load_saved_jev(out)
+        scenario = jev.get("scenario", "v0.1" if jev.get("synthetic_scenario", True) else "real")
+        prev_qubo_path = out / "qubo_jev.json"
+        if scenario == "real" and prev_qubo_path.exists():
+            prev_qubo = load_json(prev_qubo_path, "Rode antes sem --reuse-jev.")
+            base_costs = _extract_base_costs(prev_qubo)
+            congestion_brl = float(prev_qubo.get("congestion_both_a_brl", CONGESTION_BOTH_A_BRL))
         print(f"  usando respostas salvas de {jev['created_at_utc']} (nenhum credito gasto)")
     else:
         key = read_secret(
@@ -215,9 +298,11 @@ def run_jev_phase(args: argparse.Namespace, out: Path) -> int:
             timeout=args.jev_timeout,
             out=out,
             run_id=run_id,
+            route_states=route_states,
+            scenario=scenario,
         )
 
-    answers_by_route = {r: jev["routes"][r]["answers"] for r in ROUTE_STATES}
+    answers_by_route = {r: jev["routes"][r]["answers"] for r in ("A", "B")}
     signals = route_signals(answers_by_route)
     for route in ("A", "B"):
         s = signals[route]
@@ -226,25 +311,33 @@ def run_jev_phase(args: argparse.Namespace, out: Path) -> int:
             f"  rota {route}: risco de atraso {num(s['delay_probability'])} | condicao {s['condition']}"
             f" | dificuldade {num(s['access_difficulty_score'])} de 3 | tokens {usage_text(u)}"
         )
+        if s["human_review"]:
+            print(f"  rota {route}: condicao critica, pela nossa regra vai pra revisao humana")
     resolved = jev_usage(jev["routes"]["A"])["model"]
     if resolved:
         print(f"  modelo que respondeu: {resolved}")
-        if s["human_review"]:
-            print(f"  rota {route}: condicao critica, pela nossa regra vai pra revisao humana")
 
     print("\n[2/4] Custos e QUBO")
-    penalty = float(args.delay_penalty)
-    costs_base = route_costs(None, delay_penalty_brl=penalty)
-    costs_jev = route_costs(signals, delay_penalty_brl=penalty)
-    model_base = build_two_truck_qubo(costs_base, instance_id="two_truck_whitepaper")
-    model_jev = build_two_truck_qubo(costs_jev, instance_id="two_truck_jev")
+    costs_base = route_costs(None, delay_penalty_brl=penalty, base_costs=base_costs)
+    costs_jev = route_costs(signals, delay_penalty_brl=penalty, base_costs=base_costs)
+    model_base = build_two_truck_qubo(
+        costs_base,
+        congestion_brl=congestion_brl,
+        instance_id="two_truck_whitepaper" if scenario == "v0.1" else "two_truck_real_base",
+    )
+    model_jev = build_two_truck_qubo(
+        costs_jev,
+        congestion_brl=congestion_brl,
+        instance_id="two_truck_jev" if scenario == "v0.1" else "two_truck_real_jev",
+    )
 
-    # sanidade: sem Jev tem que dar exatamente o exemplo do White Paper
-    ref = two_truck_example()
-    for bits in ("00", "01", "10", "11"):
-        b = [int(c) for c in bits]
-        if abs(model_base.evaluate(b) - ref.evaluate(b)) > 1e-9:
-            raise PipelineError("QUBO sem Jev nao bate com o White Paper, algo mudou nos custos base")
+    # sanidade: no cenario v0.1, sem Jev tem que dar exatamente o exemplo do White Paper
+    if scenario == "v0.1":
+        ref = two_truck_example()
+        for bits in ("00", "01", "10", "11"):
+            b = [int(c) for c in bits]
+            if abs(model_base.evaluate(b) - ref.evaluate(b)) > 1e-9:
+                raise PipelineError("QUBO sem Jev nao bate com o White Paper, algo mudou nos custos base")
 
     print(f"  sem Jev: {qubo_formula(model_base)}")
     print(f"  com Jev: {qubo_formula(model_jev)}  (multa de atraso {brl(penalty)})")
@@ -263,26 +356,29 @@ def run_jev_phase(args: argparse.Namespace, out: Path) -> int:
     changed = set(opt_base) != set(opt_jev)
     print("  o sinal do Jev mudou a decisao" if changed else "  o sinal do Jev nao mudou a decisao")
 
-    write_json(
-        out / "qubo_jev.json",
-        {
-            "run_id": jev["run_id"],
-            "created_at_utc": utc_now(),
-            "synthetic_scenario": True,
-            "delay_penalty_brl": penalty,
-            "congestion_both_a_brl": CONGESTION_BOTH_A_BRL,
-            "signals": signals,
-            "costs_without_jev": costs_base,
-            "costs_with_jev": costs_jev,
-            "qubo_without_jev": qubo_payload(model_base),
-            "qubo_with_jev": qubo_payload(model_jev),
-            "decision_changed": changed,
-            "classical": {
-                "without_jev": {"optimal_cost": exact_base["optimal_cost"], "optima": opt_base},
-                "with_jev": {"optimal_cost": exact_jev["optimal_cost"], "optima": opt_jev},
-            },
+    qubo_doc: dict[str, Any] = {
+        "run_id": jev["run_id"],
+        "created_at_utc": utc_now(),
+        "scenario": scenario,
+        "synthetic_scenario": scenario == "v0.1",
+        "base_costs_brl": base_costs,
+        "delay_penalty_brl": penalty,
+        "congestion_both_a_brl": congestion_brl,
+        "signals": signals,
+        "costs_without_jev": costs_base,
+        "costs_with_jev": costs_jev,
+        "qubo_without_jev": qubo_payload(model_base),
+        "qubo_with_jev": qubo_payload(model_jev),
+        "decision_changed": changed,
+        "classical": {
+            "without_jev": {"optimal_cost": exact_base["optimal_cost"], "optima": opt_base},
+            "with_jev": {"optimal_cost": exact_jev["optimal_cost"], "optima": opt_jev},
         },
-    )
+    }
+    if scenario == "real":
+        qubo_doc["team_parameters_note"] = "parametro da equipe, nao medido"
+        qubo_doc["sources_file"] = "sources.json"
+    write_json(out / "qubo_jev.json", qubo_doc)
 
     print("\n[3/4] QAOA no simulador ideal (pode levar uns 30 s)")
     sim = run_ideal_qaoa_sweep(
@@ -313,7 +409,7 @@ def run_jev_phase(args: argparse.Namespace, out: Path) -> int:
     print("\n[4/4] Relatorio")
     write_report(out)
     print(f"  salvo em {out}")
-    print("\nPronto. Proximo passo opcional: python scripts/run_jev_pipeline.py --ibm-dry-run")
+    print(f"\nPronto. Proximo passo opcional: python scripts/run_jev_pipeline.py --ibm-dry-run --results-dir {out}")
     return 0
 
 
@@ -329,9 +425,13 @@ def rebuild_jev_model(out: Path) -> tuple[QuboModel, dict[str, Any], dict[str, A
         raise PipelineError(
             "os arquivos de results/ sao de rodadas diferentes. Rode: python scripts/run_jev_pipeline.py --reuse-jev"
         )
-    signals = route_signals({r: jev["routes"][r]["answers"] for r in ROUTE_STATES})
+    signals = route_signals({r: jev["routes"][r]["answers"] for r in ("A", "B")})
+    base_costs = _extract_base_costs(qubo)
+    congestion_brl = float(qubo.get("congestion_both_a_brl", CONGESTION_BOTH_A_BRL))
     model = build_two_truck_qubo(
-        route_costs(signals, delay_penalty_brl=float(qubo["delay_penalty_brl"])), instance_id="two_truck_jev"
+        route_costs(signals, delay_penalty_brl=float(qubo["delay_penalty_brl"]), base_costs=base_costs),
+        congestion_brl=congestion_brl,
+        instance_id="two_truck_jev",
     )
     if model.metadata["optimal_bitstrings"] != qubo["qubo_with_jev"]["optimal_bitstrings"]:
         raise PipelineError("QUBO remontado nao bate com qubo_jev.json. Rode de novo com --reuse-jev.")
@@ -527,7 +627,10 @@ def run_ibm_phase(args: argparse.Namespace, out: Path, backend_override=None) ->
             out / "ibm_dry_run.json",
             {"run_id": jev["run_id"], "created_at_utc": utc_now(), "submitted": False, "shots": args.shots, **info},
         )
-        print("\nDry-run ok, nenhum job enviado. Pra mandar de verdade: python scripts/run_jev_pipeline.py --ibm-execute")
+        print(
+            f"\nDry-run ok, nenhum job enviado. Pra mandar de verdade: "
+            f"python scripts/run_jev_pipeline.py --ibm-execute --results-dir {out}"
+        )
         return 0
 
     # execute: confirmacao manual igual ao run_ibm_quantum.py
@@ -556,7 +659,7 @@ def run_ibm_phase(args: argparse.Namespace, out: Path, backend_override=None) ->
     try:
         state = wait_job(job, args.ibm_wait_minutes)
     except KeyboardInterrupt:
-        print(f"\nParou de esperar. Depois rode: python scripts/run_jev_pipeline.py --ibm-job-id {job_id}")
+        print(f"\nParou de esperar. Depois rode: python scripts/run_jev_pipeline.py --ibm-job-id {job_id} --results-dir {out}")
         return 130
 
     record = {"run_id": jev["run_id"], "mode": "execute", "job_id": job_id, "backend": backend.name, "fetched_at_utc": utc_now()}
@@ -564,7 +667,7 @@ def run_ibm_phase(args: argparse.Namespace, out: Path, backend_override=None) ->
         record.update(summarize_job(job, model, sim, shots=args.shots))
     elif state == "pending":
         record["status"] = "pending"
-        print(f"  ainda na fila. Depois rode: python scripts/run_jev_pipeline.py --ibm-job-id {job_id}")
+        print(f"  ainda na fila. Depois rode: python scripts/run_jev_pipeline.py --ibm-job-id {job_id} --results-dir {out}")
     else:
         record["status"] = state.lower()
         try:
@@ -606,13 +709,24 @@ def write_report(out: Path) -> None:
                 ibm = (name, data)
                 break
 
+    is_real = qubo.get("scenario") == "real" or not qubo.get("synthetic_scenario", True)
+    title = "# Prova Jev + Qiskit (PoC v0.2 - cenario real)" if is_real else "# Prova Jev + Qiskit (PoC v0.1)"
+    disclaimer = (
+        "Cenario montado com dados publicos rastreaveis em sources.json (OSRM, Open-Meteo, ANP e ANTT). "
+        "Multa de atraso e custo de congestionamento sao parametros da equipe, nao medidos. "
+        "As probabilidades do Jev nao foram calibradas com telemetria historica. "
+        "Nao demonstra vantagem quantica."
+        if is_real
+        else "Cenário sintético e ilustrativo. As probabilidades do Jev não foram calibradas com dados reais. "
+        "Não demonstra vantagem quântica nem economia operacional real."
+    )
+
     lines = [
-        "# Prova Jev + Qiskit (PoC v0.1)",
+        title,
         "",
         f"Gerado em {utc_now()} (rodada {jev['run_id']}).",
         "",
-        "Cenário sintético e ilustrativo. As probabilidades do Jev não foram calibradas com dados reais. "
-        "Não demonstra vantagem quântica nem economia operacional real.",
+        disclaimer,
         "",
         f"## 1. Jev ({jev['model']}, {str(jev.get('endpoint', '-')).split('/')[2] if '//' in str(jev.get('endpoint', '')) else '-'})",
         "",
@@ -631,9 +745,10 @@ def write_report(out: Path) -> None:
     if resolved:
         lines += ["", f"Modelo pedido: `{jev['model']}`. Modelo que respondeu: `{resolved}`."]
     penalty = qubo["delay_penalty_brl"]
+    penalty_note = " (parametro da equipe, nao medido)" if is_real else ""
     lines += [
         "",
-        f"## 2. Custos por rota: base + risco de atraso x multa de {brl(penalty)}",
+        f"## 2. Custos por rota: base + risco de atraso x multa de {brl(penalty)}{penalty_note}",
         "",
         "| Caminhão | Rota A | Rota B |",
         "|---|---:|---:|",
@@ -645,11 +760,12 @@ def write_report(out: Path) -> None:
             f"{brl(c['B']['base_brl'])} + {brl(c['B']['risk_cost_brl'])} = {brl(c['B']['total_brl'])} |"
         )
     q0, q1 = qubo["qubo_without_jev"], qubo["qubo_with_jev"]
+    base_label = "Sem Jev (custos base ANTT)" if is_real else "Sem Jev (White Paper)"
     lines += [
         "",
         "## 3. QUBO (x = 0 rota A, x = 1 rota B)",
         "",
-        f"- Sem Jev (White Paper): `{q0['formula']}`",
+        f"- {base_label}: `{q0['formula']}`",
         f"- Com Jev: `{q1['formula']}`",
         "",
         "| Estado | Significado | Sem Jev | Com Jev |",
@@ -694,9 +810,10 @@ def write_report(out: Path) -> None:
             )
         else:
             lines.append(f"Job {data.get('job_id')}: status {data.get('status')}.")
+    extra = "sources.json, " if is_real else ""
     lines += [
         "",
-        "Arquivos: jev_responses.json (request e resposta bruta do Jev, sem a chave), qubo_jev.json, "
+        f"Arquivos: {extra}jev_responses.json (request e resposta bruta do Jev, sem a chave), qubo_jev.json, "
         "simulator_results.json e, se rodou, ibm_*.json.",
         "",
     ]
@@ -708,6 +825,19 @@ def write_report(out: Path) -> None:
 
 def parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Prova Jev + Qiskit do Q-Flow")
+    parser.add_argument(
+        "--scenario",
+        choices=["v0.1", "real"],
+        default="v0.1",
+        help="v0.1 = cenario sintetico do White Paper (padrao) | real = dados reais OSRM/Open-Meteo/ANP/ANTT",
+    )
+    parser.add_argument("--departure", type=str, default=None, help="hora de saida YYYY-MM-DDTHH:00 (America/Sao_Paulo)")
+    parser.add_argument("--state", type=str, default=None, help="UF para consulta do diesel S10 na ANP (padrao SP)")
+    parser.add_argument("--origin-lon", type=float, default=None, help="longitude da origem no OSRM")
+    parser.add_argument("--origin-lat", type=float, default=None, help="latitude da origem no OSRM")
+    parser.add_argument("--dest-lon", type=float, default=None, help="longitude do destino no OSRM")
+    parser.add_argument("--dest-lat", type=float, default=None, help="latitude do destino no OSRM")
+    parser.add_argument("--source-timeout", type=float, default=20.0, help="timeout das fontes externas em segundos")
     parser.add_argument("--reuse-jev", action="store_true", help="usa as respostas do Jev ja salvas")
     ibm = parser.add_mutually_exclusive_group()
     ibm.add_argument("--ibm-dry-run", action="store_true", help="confere conta, backend e circuito sem enviar job")
@@ -734,6 +864,8 @@ def parse_args(argv: list[str] | None) -> argparse.Namespace:
         parser.error("--delay-penalty nao pode ser negativa")
     if args.jev_timeout <= 0:
         parser.error("--jev-timeout tem que ser maior que zero")
+    if args.source_timeout <= 0:
+        parser.error("--source-timeout tem que ser maior que zero")
     if args.ibm_wait_minutes < 0:
         parser.error("--ibm-wait-minutes nao pode ser negativo")
     return args
@@ -750,7 +882,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.ibm_dry_run or args.ibm_execute or args.ibm_job_id:
             return run_ibm_phase(args, out)
         return run_jev_phase(args, out)
-    except (CredentialError, JevError, PipelineError, ValueError) as exc:
+    except (CredentialError, JevError, RealScenarioError, PipelineError, ValueError) as exc:
         print(f"\nERRO: {exc}")
         return 1
     except KeyboardInterrupt:
